@@ -54,12 +54,12 @@ namespace LaserMark
                 // Text
                 var textEditSize = new Size();
                 textEditSize.Height = 40 - 5;
-                textEditSize.Width = this.Width - (this.Width / 3);
+                textEditSize.Width = this.Width - (int)(this.Width / 2.5) - 5;
 
                 // Text`s layout
                 var middlelayoutItemSize = new Size();
                 middlelayoutItemSize.Height = 40;
-                middlelayoutItemSize.Width = this.Width - (this.Width / 3);
+                middlelayoutItemSize.Width = this.Width - (int)(this.Width / 2.5);
 
                 // Button`s layout
                 var layoutItemSize = new Size();
