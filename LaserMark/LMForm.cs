@@ -59,21 +59,9 @@ namespace LaserMark
                             this.rightPanelControl,
                             this.foregroundCustomPictureEdit,
                             new Size(rightPanelControl.Width, this.ClientRectangle.Height));
-
-                        // CustomFlyoutDialog.ShowForm(this, null, new UpdateEzdData(ezdObjects));
-
-                        //if (ezdObjects != null)
-                        //{
-                        //    this.foregroundCustomPictureEdit.Image  = 
-                        //        EzdDataControl.ReopositoryEzdFile.UpdateCustomEzd(updatedEzdObjects,
-                        //        this.foregroundCustomPictureEdit.Width,
-                        //        this.foregroundCustomPictureEdit.Height);
-
-                        //    updatedEzdObjects = null;
-                        //}
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
 
                     throw;

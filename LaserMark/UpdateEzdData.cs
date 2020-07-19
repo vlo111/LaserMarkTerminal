@@ -194,8 +194,6 @@ namespace LaserMark
             currentSelectedText = ((TextEdit)sender).Properties.NullText;
         }
 
-        #region plus_minus btn events
-
         private void obj1PlusBtn_Click(object sender, EventArgs e)
         {
             var img = ReopositoryEzdFile.FontSize(_competitor[0].Item1,
@@ -269,26 +267,6 @@ namespace LaserMark
         private void obj8PlusBtn_Click(object sender, EventArgs e)
         {
             var img = ReopositoryEzdFile.FontSize(_competitor[7].Item1,
-                ReopositoryEzdFile.ModeFontSize.zoom,
-                _ezdPictureEdit.Image.Width,
-                _ezdPictureEdit.Image.Height);
-
-            _ezdPictureEdit.Image = PictureControl.Images.SetImageTransparent(img);
-        }
-
-        private void obj9PlusBtn_Click(object sender, EventArgs e)
-        {
-            var img = ReopositoryEzdFile.FontSize(_competitor[8].Item1,
-                ReopositoryEzdFile.ModeFontSize.zoom,
-                _ezdPictureEdit.Image.Width,
-                _ezdPictureEdit.Image.Height);
-
-            _ezdPictureEdit.Image = PictureControl.Images.SetImageTransparent(img);
-        }
-
-        private void obj10PlusBtn_Click(object sender, EventArgs e)
-        {
-            var img = ReopositoryEzdFile.FontSize(_competitor[9].Item1,
                 ReopositoryEzdFile.ModeFontSize.zoom,
                 _ezdPictureEdit.Image.Width,
                 _ezdPictureEdit.Image.Height);
@@ -375,29 +353,6 @@ namespace LaserMark
 
             _ezdPictureEdit.Image = PictureControl.Images.SetImageTransparent(img);
         }
-
-        private void obj9MinusBtn_Click(object sender, EventArgs e)
-        {
-            var img = ReopositoryEzdFile.FontSize(_competitor[8].Item1,
-                ReopositoryEzdFile.ModeFontSize.reduce,
-                _ezdPictureEdit.Image.Width,
-                _ezdPictureEdit.Image.Height);
-
-            _ezdPictureEdit.Image = PictureControl.Images.SetImageTransparent(img);
-        }
-
-        private void obj10MinusBtn_Click(object sender, EventArgs e)
-        {
-            var img = ReopositoryEzdFile.FontSize(_competitor[9].Item1,
-                ReopositoryEzdFile.ModeFontSize.reduce,
-                _ezdPictureEdit.Image.Width,
-                _ezdPictureEdit.Image.Height);
-
-            _ezdPictureEdit.Image = PictureControl.Images.SetImageTransparent(img);
-        }
-
-
-        #endregion
 
         private void HidePopupBtn_Click(object sender, EventArgs e)
         {
