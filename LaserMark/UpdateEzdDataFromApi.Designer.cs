@@ -197,7 +197,7 @@
             // 
             // editEzdBtn
             // 
-            this.editEzdBtn.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("simpleButton3.ImageOptions.SvgImage")));
+            this.editEzdBtn.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editEzdBtn.ImageOptions.SvgImage")));
             this.editEzdBtn.Location = new System.Drawing.Point(32, 72);
             this.editEzdBtn.Name = "editEzdBtn";
             this.editEzdBtn.Size = new System.Drawing.Size(42, 36);
@@ -395,7 +395,9 @@
             // simpleButton16
             // 
             this.simpleButton16.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.simpleButton16.Appearance.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.simpleButton16.Appearance.Options.UseBackColor = true;
+            this.simpleButton16.Appearance.Options.UseFont = true;
             this.simpleButton16.Location = new System.Drawing.Point(32, 434);
             this.simpleButton16.Name = "simpleButton16";
             this.simpleButton16.Size = new System.Drawing.Size(96, 66);
@@ -406,7 +408,9 @@
             // simpleButton17
             // 
             this.simpleButton17.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.simpleButton17.Appearance.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.simpleButton17.Appearance.Options.UseBackColor = true;
+            this.simpleButton17.Appearance.Options.UseFont = true;
             this.simpleButton17.Location = new System.Drawing.Point(232, 434);
             this.simpleButton17.Name = "simpleButton17";
             this.simpleButton17.Size = new System.Drawing.Size(96, 66);

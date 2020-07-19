@@ -46,12 +46,9 @@ namespace EzdDataControl
             return ezdObjects;
         }
 
-        public static Image UpdateCustomEzd(List<Tuple<string, StringBuilder>> ezdObj, int width, int height)
+        public static Image UpdateCustomEzd(Tuple<string, string> ezdObj, int width, int height)
         {
-            for (int i = 0; i < ezdObj.Count; i++)
-            {
-                JczLmc.ChangeTextByName(ezdObj[i].Item1, ezdObj[i].Item2.ToString());
-            }
+            JczLmc.ChangeTextByName(ezdObj.Item1, ezdObj.Item2);
 
             var img = JczLmc.GetCurPreviewImage(width, height);
 

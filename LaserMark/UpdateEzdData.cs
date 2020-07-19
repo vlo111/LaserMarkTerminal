@@ -17,8 +17,6 @@ namespace LaserMark
     {
         List<TextEdit> textEdits = new List<TextEdit>();
 
-        string currentSelectedText;
-
         private string _token;
 
         private CustomPictureEdit _ezdPictureEdit;
@@ -42,7 +40,7 @@ namespace LaserMark
 
             try
             {
-                this.marginUpEmptySpace.MinSize = new Size(0, windowSize.Height / 6);
+                // this.marginUpEmptySpace.MinSize = new Size(0, windowSize.Height / 6);
 
                 this.flyoutPanel1.OwnerControl = layoutControl;
 
@@ -56,12 +54,12 @@ namespace LaserMark
                 // Text
                 var textEditSize = new Size();
                 textEditSize.Height = 40 - 5;
-                textEditSize.Width = this.Width / 2 - 5;
+                textEditSize.Width = this.Width - (this.Width / 3);
 
                 // Text`s layout
                 var middlelayoutItemSize = new Size();
                 middlelayoutItemSize.Height = 40;
-                middlelayoutItemSize.Width = this.Width / 2;
+                middlelayoutItemSize.Width = this.Width - (this.Width / 3);
 
                 // Button`s layout
                 var layoutItemSize = new Size();
@@ -173,27 +171,12 @@ namespace LaserMark
 
         private void enter_Click(object sender, EventArgs e)
         {
-            this.layoutControl1.Controls.OfType<TextEdit>()
-                .ForEach(p =>
-                {
-                    foreach (var item in textEdits)
-                    {
-                        if (p.Properties.NullText == item.Properties.NullText)
-                        {
-                            var str = new StringBuilder();
-                            str.Append(item.Text);
+            var text = (TextEdit)sender;
 
-                            LMForm.updatedEzdObjects.Add(new Tuple<string, StringBuilder>(p.Properties.NullText, str));
-                        }
-                    }
-                });
+            //LMForm.updatedEzdObjects.Add(new Tuple<string, StringBuilder>(text.Properties.NullText, text.Text));
         }
 
-        private void SelectedTextEdit_Enter(object sender, EventArgs e)
-        {
-            currentSelectedText = ((TextEdit)sender).Properties.NullText;
-        }
-
+        #region Plus and Minus btn click event
         private void obj1PlusBtn_Click(object sender, EventArgs e)
         {
             var img = ReopositoryEzdFile.FontSize(_competitor[0].Item1,
@@ -354,9 +337,29 @@ namespace LaserMark
             _ezdPictureEdit.Image = PictureControl.Images.SetImageTransparent(img);
         }
 
+
+
+        #endregion
+
         private void HidePopupBtn_Click(object sender, EventArgs e)
         {
             this.flyoutPanel1.HidePopup();
+        }
+
+        private void obj1TextEdit_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                var text = (TextEdit)sender;
+
+                var comp = new Tuple<string, string>(text.Properties.NullText, text.Text);
+
+                this._ezdPictureEdit.Image = ReopositoryEzdFile.UpdateCustomEzd(comp, this._ezdPictureEdit.Width, this._ezdPictureEdit.Height);
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("Данные с этим номером не найдены", "Information", MessageBoxButtons.OK);
+            }
         }
     }
 }
