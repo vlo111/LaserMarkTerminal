@@ -38,7 +38,7 @@ namespace LaserMark
         private void UpdateEzd_Click(object sender, EventArgs e)
         {
             if (this._ezdOriginalImage != null)
-            {   
+            {
                 try
                 {
                     if (!string.IsNullOrEmpty(current_token))
@@ -75,19 +75,37 @@ namespace LaserMark
 
         private async void LoginBtn_Click(object sender, EventArgs e)
         {
-            // Get all events
-            var base64HeaderValue = Convert.ToBase64String(
-                System.Text.Encoding.UTF8.GetBytes($@"{this.loginTextEdit.Text}:{this.passwordTextEdit.Text}"));
+            try
+            {
+                // Get all events
+                var base64HeaderValue = Convert.ToBase64String(
+                    System.Text.Encoding.UTF8.GetBytes($@"{this.loginTextEdit.Text}:{this.passwordTextEdit.Text}"));
 
-            const string Url = @"http://openeventor.ru/api/get_events";
+                const string Url = @"http://openeventor.ru/api/get_events";
 
-            var task = await Queries.GetAllEventsAsync(Url, base64HeaderValue);
+                var task = await Queries.GetAllEventsAsync(Url, base64HeaderValue);
 
-            var result = JsonConvert.DeserializeObject<Eventor>(task);
+                var result = JsonConvert.DeserializeObject<Eventor>(task);
 
-            CustomFlyoutDialog.ShowForm(this, null, new GetEvents(result));
+                CustomFlyoutDialog.ShowForm(this, null, new GetEvents(result));
 
-            this.urlTextEdit.Text = $@"http://openeventor.ru/api/event/{current_token}/get_event";
+                this.urlTextEdit.Text = $@"http://openeventor.ru/api/event/{current_token}/get_event";
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("Нет доступ к апи, проверьте интернет соединения", "Error", MessageBoxButtons.OK);
+                if (this._ezdOriginalImage != null)
+                {
+                    ezdObjects = EzdDataControl.ReopositoryEzdFile.GetEzdData();
+
+                    updatedEzdObjects = new List<Tuple<string, StringBuilder>>();
+
+                    new UpdateEzdData(ezdObjects,
+                        this.rightPanelControl,
+                        this.foregroundCustomPictureEdit,
+                        new Size(rightPanelControl.Width, this.ClientRectangle.Height));
+                }
+            }
         }
 
         private void UploadBGBtn_Click(object sender, EventArgs e)
@@ -142,7 +160,7 @@ namespace LaserMark
                     {
                         try
                         {
-                            var img = EzdDataControl.ReopositoryEzdFile.LoadImage(ofd.FileName, 
+                            var img = EzdDataControl.ReopositoryEzdFile.LoadImage(ofd.FileName,
                                 this.foregroundCustomPictureEdit.Width,
                                 this.foregroundCustomPictureEdit.Height);
 

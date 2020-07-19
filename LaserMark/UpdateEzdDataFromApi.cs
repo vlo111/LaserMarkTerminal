@@ -27,13 +27,15 @@ namespace LaserMark
 
         private LMForm _form;
 
+        PanelControl _rightLayoutControl;
+
 
         public UpdateEzdDataFromApi(LMForm form, PanelControl layoutControl, string token, Control control, Size windowSize)
         {
             _token = token;
             _ezdPictureEdit = (CustomPictureEdit)control;
             _form = form;
-
+            _rightLayoutControl = layoutControl;
             this.MaximumSize = windowSize;
             this.MinimumSize = windowSize;
 
@@ -98,6 +100,16 @@ namespace LaserMark
                                $@"http://openeventor.ru/api/event/{_token}/get_competitors");
 
             this._competitors = JsonConvert.DeserializeObject<CompetitorList>(task);
+        }
+
+        private void editEzdBtn_Click(object sender, EventArgs e)
+        {
+            var ezdObjects = EzdDataControl.ReopositoryEzdFile.GetEzdData();
+
+            new UpdateEzdData(ezdObjects,
+                _rightLayoutControl,
+                _ezdPictureEdit,
+                new Size(_rightLayoutControl.Width, this.ClientRectangle.Height));
         }
     }
 }

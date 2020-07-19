@@ -34,7 +34,7 @@
             this.flyoutPanelControl1 = new DevExpress.Utils.FlyoutPanelControl();
             this.layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
             this.HidePopupBtn = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
+            this.editEzdBtn = new DevExpress.XtraEditors.SimpleButton();
             this.searchTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.searchSimpleButton = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
@@ -78,9 +78,9 @@
             this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem19 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem7 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.flyoutPanel1)).BeginInit();
@@ -117,9 +117,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -155,7 +155,7 @@
             // layoutControl2
             // 
             this.layoutControl2.Controls.Add(this.HidePopupBtn);
-            this.layoutControl2.Controls.Add(this.simpleButton3);
+            this.layoutControl2.Controls.Add(this.editEzdBtn);
             this.layoutControl2.Controls.Add(this.searchTextEdit);
             this.layoutControl2.Controls.Add(this.searchSimpleButton);
             this.layoutControl2.Controls.Add(this.simpleButton4);
@@ -195,14 +195,15 @@
             this.HidePopupBtn.TabIndex = 4;
             this.HidePopupBtn.Click += new System.EventHandler(this.HidePopupBtn_Click);
             // 
-            // simpleButton3
+            // editEzdBtn
             // 
-            this.simpleButton3.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("simpleButton3.ImageOptions.SvgImage")));
-            this.simpleButton3.Location = new System.Drawing.Point(32, 72);
-            this.simpleButton3.Name = "simpleButton3";
-            this.simpleButton3.Size = new System.Drawing.Size(42, 36);
-            this.simpleButton3.StyleController = this.layoutControl2;
-            this.simpleButton3.TabIndex = 7;
+            this.editEzdBtn.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("simpleButton3.ImageOptions.SvgImage")));
+            this.editEzdBtn.Location = new System.Drawing.Point(32, 72);
+            this.editEzdBtn.Name = "editEzdBtn";
+            this.editEzdBtn.Size = new System.Drawing.Size(42, 36);
+            this.editEzdBtn.StyleController = this.layoutControl2;
+            this.editEzdBtn.TabIndex = 7;
+            this.editEzdBtn.Click += new System.EventHandler(this.editEzdBtn_Click);
             // 
             // searchTextEdit
             // 
@@ -485,7 +486,7 @@
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
-            // marginUpEmptySpace
+            // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
             this.emptySpaceItem2.CustomizationFormText = "marginUpEmptySpace";
@@ -496,7 +497,7 @@
             // 
             // layoutControlItem4
             // 
-            this.layoutControlItem4.Control = this.simpleButton3;
+            this.layoutControlItem4.Control = this.editEzdBtn;
             this.layoutControlItem4.ControlAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.layoutControlItem4.CustomizationFormText = "layoutControlItem4";
             this.layoutControlItem4.Location = new System.Drawing.Point(10, 50);
@@ -509,21 +510,21 @@
             // 
             this.emptySpaceItem6.AllowHotTrack = false;
             this.emptySpaceItem6.CustomizationFormText = "emptySpaceItem6";
-            this.emptySpaceItem6.Location = new System.Drawing.Point(0, 53);
+            this.emptySpaceItem6.Location = new System.Drawing.Point(0, 50);
             this.emptySpaceItem6.Name = "emptySpaceItem6";
-            this.emptySpaceItem6.Size = new System.Drawing.Size(10, 40);
+            this.emptySpaceItem6.Size = new System.Drawing.Size(10, 43);
             this.emptySpaceItem6.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem5
             // 
             this.emptySpaceItem5.AllowHotTrack = false;
             this.emptySpaceItem5.CustomizationFormText = "emptySpaceItem5";
-            this.emptySpaceItem5.Location = new System.Drawing.Point(310, 53);
+            this.emptySpaceItem5.Location = new System.Drawing.Point(310, 50);
             this.emptySpaceItem5.Name = "emptySpaceItem5";
-            this.emptySpaceItem5.Size = new System.Drawing.Size(24, 40);
+            this.emptySpaceItem5.Size = new System.Drawing.Size(24, 43);
             this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // obj1MinuslayoutControlItem
+            // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.searchTextEdit;
             this.layoutControlItem3.ControlAlignment = System.Drawing.ContentAlignment.TopLeft;
@@ -785,6 +786,14 @@
             this.emptySpaceItem7.Size = new System.Drawing.Size(100, 70);
             this.emptySpaceItem7.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // emptySpaceItem1
+            // 
+            this.emptySpaceItem1.AllowHotTrack = false;
+            this.emptySpaceItem1.Location = new System.Drawing.Point(10, 370);
+            this.emptySpaceItem1.Name = "emptySpaceItem1";
+            this.emptySpaceItem1.Size = new System.Drawing.Size(300, 42);
+            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
+            // 
             // Root
             // 
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -803,14 +812,6 @@
             this.layoutControlItem1.Size = new System.Drawing.Size(378, 526);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
-            // 
-            // emptySpaceItem1
-            // 
-            this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(10, 373);
-            this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(300, 39);
-            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // UpdateEzdDataFromApi
             // 
@@ -855,9 +856,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -869,7 +870,7 @@
         private DevExpress.Utils.FlyoutPanelControl flyoutPanelControl1;
         private DevExpress.XtraLayout.LayoutControl layoutControl2;
         private DevExpress.XtraEditors.SimpleButton HidePopupBtn;
-        private DevExpress.XtraEditors.SimpleButton simpleButton3;
+        private DevExpress.XtraEditors.SimpleButton editEzdBtn;
         private DevExpress.XtraEditors.TextEdit searchTextEdit;
         private DevExpress.XtraEditors.SimpleButton searchSimpleButton;
         private DevExpress.XtraEditors.SimpleButton simpleButton4;
