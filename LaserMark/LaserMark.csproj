@@ -68,6 +68,8 @@
     <Reference Include="TelerikCommon, Version=2019.2.618.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="State\CurrentApiData.cs" />
+    <Compile Include="State\CurrentEzd.cs" />
     <Compile Include="CustomFlyoutDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +82,7 @@
     <Compile Include="GetEvents.Designer.cs">
       <DependentUpon>GetEvents.cs</DependentUpon>
     </Compile>
+    <Compile Include="State\CurrentUIData.cs" />
     <Compile Include="LMForm.cs">
       <SubType>Form</SubType>
     </Compile>

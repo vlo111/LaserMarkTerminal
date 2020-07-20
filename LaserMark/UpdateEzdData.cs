@@ -10,6 +10,7 @@ using DevExpress.Utils.Extensions;
 using Api;
 using System.Windows.Forms;
 using EzdDataControl;
+using LaserMark.State;
 
 namespace LaserMark
 {
@@ -17,39 +18,29 @@ namespace LaserMark
     {
         List<TextEdit> textEdits = new List<TextEdit>();
 
-        private string _token;
-
-        private CustomPictureEdit _ezdPictureEdit;
-
         List<Tuple<string, StringBuilder>> _competitor;
 
-        private CompetitorList _competitors;
+        PictureEdit _currentEzd;
 
-        private LMForm _form;
-
-        public UpdateEzdData(List<Tuple<string, StringBuilder>> competitor, PanelControl layoutControl, Control control, Size windowSize)
+        public UpdateEzdData(List<Tuple<string, StringBuilder>> competitor)
         {
             _competitor = competitor;
+            _currentEzd = (CustomPictureEdit)(CurrentEzd.EzdPictureEdit);
 
-            _ezdPictureEdit = (CustomPictureEdit)control;
-
-            this.MaximumSize = windowSize;
-            this.MinimumSize = windowSize;
+            this.MaximumSize = CurrentUIData.RightPanelSize;
+            this.MinimumSize = CurrentUIData.RightPanelSize;
 
             InitializeComponent();
 
             try
             {
-                // this.marginUpEmptySpace.MinSize = new Size(0, windowSize.Height / 6);
 
-                this.flyoutPanel1.OwnerControl = layoutControl;
+                this.flyoutPanel1.OwnerControl = CurrentUIData.RightLayoutControl;
 
-                this.flyoutPanel1.MaximumSize = windowSize;
-                this.flyoutPanel1.MinimumSize = windowSize;
+                this.flyoutPanel1.MaximumSize = CurrentUIData.RightPanelSize;
+                this.flyoutPanel1.MinimumSize = CurrentUIData.RightPanelSize;
 
                 this.flyoutPanel1.ShowPopup();
-
-                // Manage size {minus text plus}
 
                 // Text
                 var textEditSize = new Size();
@@ -169,172 +160,165 @@ namespace LaserMark
             }
         }
 
-        private void enter_Click(object sender, EventArgs e)
-        {
-            var text = (TextEdit)sender;
-
-            //LMForm.updatedEzdObjects.Add(new Tuple<string, StringBuilder>(text.Properties.NullText, text.Text));
-        }
-
         #region Plus and Minus btn click event
         private void obj1PlusBtn_Click(object sender, EventArgs e)
         {
             var img = ReopositoryEzdFile.FontSize(_competitor[0].Item1,
                 ReopositoryEzdFile.ModeFontSize.zoom,
-                _ezdPictureEdit.Image.Width,
-                _ezdPictureEdit.Image.Height);
+                _currentEzd.Image.Width,
+                _currentEzd.Image.Height);
 
-            _ezdPictureEdit.Image = PictureControl.Images.SetImageTransparent(img);
+            _currentEzd.Image = PictureControl.Images.SetImageTransparent(img);
         }
 
         private void obj2PlusBtn_Click(object sender, EventArgs e)
         {
             var img = ReopositoryEzdFile.FontSize(_competitor[1].Item1,
                 ReopositoryEzdFile.ModeFontSize.zoom,
-                _ezdPictureEdit.Image.Width,
-                _ezdPictureEdit.Image.Height);
+                _currentEzd.Image.Width,
+                _currentEzd.Image.Height);
 
-            _ezdPictureEdit.Image = PictureControl.Images.SetImageTransparent(img);
+            _currentEzd.Image = PictureControl.Images.SetImageTransparent(img);
         }
 
         private void obj3PlusBtn_Click(object sender, EventArgs e)
         {
             var img = ReopositoryEzdFile.FontSize(_competitor[2].Item1,
                 ReopositoryEzdFile.ModeFontSize.zoom,
-                _ezdPictureEdit.Image.Width,
-                _ezdPictureEdit.Image.Height);
+                _currentEzd.Image.Width,
+                _currentEzd.Image.Height);
 
-            _ezdPictureEdit.Image = PictureControl.Images.SetImageTransparent(img);
+            _currentEzd.Image = PictureControl.Images.SetImageTransparent(img);
         }
 
         private void obj4PlusBtn_Click(object sender, EventArgs e)
         {
             var img = ReopositoryEzdFile.FontSize(_competitor[3].Item1,
                 ReopositoryEzdFile.ModeFontSize.zoom,
-                _ezdPictureEdit.Image.Width,
-                _ezdPictureEdit.Image.Height);
+                _currentEzd.Image.Width,
+                _currentEzd.Image.Height);
 
-            _ezdPictureEdit.Image = PictureControl.Images.SetImageTransparent(img);
+            _currentEzd.Image = PictureControl.Images.SetImageTransparent(img);
         }
 
         private void obj5PlusBtn_Click(object sender, EventArgs e)
         {
             var img = ReopositoryEzdFile.FontSize(_competitor[4].Item1,
                 ReopositoryEzdFile.ModeFontSize.zoom,
-                _ezdPictureEdit.Image.Width,
-                _ezdPictureEdit.Image.Height);
+                _currentEzd.Image.Width,
+                _currentEzd.Image.Height);
 
-            _ezdPictureEdit.Image = PictureControl.Images.SetImageTransparent(img);
+            _currentEzd.Image = PictureControl.Images.SetImageTransparent(img);
         }
 
         private void obj6PlusBtn_Click(object sender, EventArgs e)
         {
             var img = ReopositoryEzdFile.FontSize(_competitor[5].Item1,
                 ReopositoryEzdFile.ModeFontSize.zoom,
-                _ezdPictureEdit.Image.Width,
-                _ezdPictureEdit.Image.Height);
+                _currentEzd.Image.Width,
+                _currentEzd.Image.Height);
 
-            _ezdPictureEdit.Image = PictureControl.Images.SetImageTransparent(img);
+            _currentEzd.Image = PictureControl.Images.SetImageTransparent(img);
         }
 
         private void obj7PlusBtn_Click(object sender, EventArgs e)
         {
             var img = ReopositoryEzdFile.FontSize(_competitor[6].Item1,
                 ReopositoryEzdFile.ModeFontSize.zoom,
-                _ezdPictureEdit.Image.Width,
-                _ezdPictureEdit.Image.Height);
+                _currentEzd.Image.Width,
+                _currentEzd.Image.Height);
 
-            _ezdPictureEdit.Image = PictureControl.Images.SetImageTransparent(img);
+            _currentEzd.Image = PictureControl.Images.SetImageTransparent(img);
         }
 
         private void obj8PlusBtn_Click(object sender, EventArgs e)
         {
             var img = ReopositoryEzdFile.FontSize(_competitor[7].Item1,
                 ReopositoryEzdFile.ModeFontSize.zoom,
-                _ezdPictureEdit.Image.Width,
-                _ezdPictureEdit.Image.Height);
+                _currentEzd.Image.Width,
+                _currentEzd.Image.Height);
 
-            _ezdPictureEdit.Image = PictureControl.Images.SetImageTransparent(img);
+            _currentEzd.Image = PictureControl.Images.SetImageTransparent(img);
         }
 
         private void obj1MinusBtn_Click(object sender, EventArgs e)
         {
             var img = ReopositoryEzdFile.FontSize(_competitor[0].Item1,
                 ReopositoryEzdFile.ModeFontSize.reduce,
-                _ezdPictureEdit.Image.Width,
-                _ezdPictureEdit.Image.Height);
+                _currentEzd.Image.Width,
+                _currentEzd.Image.Height);
 
-            _ezdPictureEdit.Image = PictureControl.Images.SetImageTransparent(img);
+            _currentEzd.Image = PictureControl.Images.SetImageTransparent(img);
         }
 
         private void obj2MinusBtn_Click(object sender, EventArgs e)
         {
             var img = ReopositoryEzdFile.FontSize(_competitor[1].Item1,
                 ReopositoryEzdFile.ModeFontSize.reduce,
-                _ezdPictureEdit.Image.Width,
-                _ezdPictureEdit.Image.Height);
+                _currentEzd.Image.Width,
+                _currentEzd.Image.Height);
 
-            _ezdPictureEdit.Image = PictureControl.Images.SetImageTransparent(img);
+            _currentEzd.Image = PictureControl.Images.SetImageTransparent(img);
         }
 
         private void obj3MinusBtn_Click(object sender, EventArgs e)
         {
             var img = ReopositoryEzdFile.FontSize(_competitor[2].Item1,
                 ReopositoryEzdFile.ModeFontSize.reduce,
-                _ezdPictureEdit.Image.Width,
-                _ezdPictureEdit.Image.Height);
+                _currentEzd.Image.Width,
+                _currentEzd.Image.Height);
 
-            _ezdPictureEdit.Image = PictureControl.Images.SetImageTransparent(img);
+            _currentEzd.Image = PictureControl.Images.SetImageTransparent(img);
         }
 
         private void obj4MinusBtn_Click(object sender, EventArgs e)
         {
             var img = ReopositoryEzdFile.FontSize(_competitor[3].Item1,
                 ReopositoryEzdFile.ModeFontSize.reduce,
-                _ezdPictureEdit.Image.Width,
-                _ezdPictureEdit.Image.Height);
+                _currentEzd.Image.Width,
+                _currentEzd.Image.Height);
 
-            _ezdPictureEdit.Image = PictureControl.Images.SetImageTransparent(img);
+            _currentEzd.Image = PictureControl.Images.SetImageTransparent(img);
         }
 
         private void obj5MinusBtn_Click(object sender, EventArgs e)
         {
             var img = ReopositoryEzdFile.FontSize(_competitor[4].Item1,
                 ReopositoryEzdFile.ModeFontSize.reduce,
-                _ezdPictureEdit.Image.Width,
-                _ezdPictureEdit.Image.Height);
+                _currentEzd.Image.Width,
+                _currentEzd.Image.Height);
 
-            _ezdPictureEdit.Image = PictureControl.Images.SetImageTransparent(img);
+            _currentEzd.Image = PictureControl.Images.SetImageTransparent(img);
         }
 
         private void obj6MinusBtn_Click(object sender, EventArgs e)
         {
             var img = ReopositoryEzdFile.FontSize(_competitor[5].Item1,
                 ReopositoryEzdFile.ModeFontSize.reduce,
-                _ezdPictureEdit.Image.Width,
-                _ezdPictureEdit.Image.Height);
+                _currentEzd.Image.Width,
+                _currentEzd.Image.Height);
 
-            _ezdPictureEdit.Image = PictureControl.Images.SetImageTransparent(img);
+            _currentEzd.Image = PictureControl.Images.SetImageTransparent(img);
         }
 
         private void obj7MinusBtn_Click(object sender, EventArgs e)
         {
             var img = ReopositoryEzdFile.FontSize(_competitor[6].Item1,
                 ReopositoryEzdFile.ModeFontSize.reduce,
-                _ezdPictureEdit.Image.Width,
-                _ezdPictureEdit.Image.Height);
+                _currentEzd.Image.Width,
+                _currentEzd.Image.Height);
 
-            _ezdPictureEdit.Image = PictureControl.Images.SetImageTransparent(img);
+            _currentEzd.Image = PictureControl.Images.SetImageTransparent(img);
         }
 
         private void obj8MinusBtn_Click(object sender, EventArgs e)
         {
             var img = ReopositoryEzdFile.FontSize(_competitor[7].Item1,
                 ReopositoryEzdFile.ModeFontSize.reduce,
-                _ezdPictureEdit.Image.Width,
-                _ezdPictureEdit.Image.Height);
+                _currentEzd.Image.Width,
+                _currentEzd.Image.Height);
 
-            _ezdPictureEdit.Image = PictureControl.Images.SetImageTransparent(img);
+            _currentEzd.Image = PictureControl.Images.SetImageTransparent(img);
         }
 
 
@@ -354,7 +338,7 @@ namespace LaserMark
 
                 var comp = new Tuple<string, string>(text.Properties.NullText, text.Text);
 
-                this._ezdPictureEdit.Image = ReopositoryEzdFile.UpdateCustomEzd(comp, this._ezdPictureEdit.Width, this._ezdPictureEdit.Height);
+                _currentEzd.Image = ReopositoryEzdFile.UpdateCustomEzd(comp, _currentEzd.Width, _currentEzd.Height);
             }
             catch (Exception ex)
             {

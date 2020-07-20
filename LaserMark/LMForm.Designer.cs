@@ -39,7 +39,7 @@
             this.saveCheckEdit = new DevExpress.XtraEditors.CheckEdit();
             this.saveBtn = new DevExpress.XtraEditors.SimpleButton();
             this.deleteBtn = new DevExpress.XtraEditors.SimpleButton();
-            this.updateEzd = new DevExpress.XtraEditors.SimpleButton();
+            this.dialodUpdateEzd = new DevExpress.XtraEditors.SimpleButton();
             this.bgImageLbl = new DevExpress.XtraEditors.TextEdit();
             this.ezdFileLbl = new DevExpress.XtraEditors.TextEdit();
             this.uploadEzdBtn = new DevExpress.XtraEditors.SimpleButton();
@@ -72,6 +72,8 @@
             this.pictureEdit2 = new DevExpress.XtraEditors.PictureEdit();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.foregroundCustomPictureEdit = new LaserMark.CustomPictureEdit(this.components);
+            this.backgroundCustomPictureEdit = new LaserMark.CustomPictureEdit(this.components);
             this.pictureEdit6 = new DevExpress.XtraEditors.PictureEdit();
             this.pictureEdit7 = new DevExpress.XtraEditors.PictureEdit();
             this.pictureEdit8 = new DevExpress.XtraEditors.PictureEdit();
@@ -101,8 +103,6 @@
             this.emptySpaceItem14 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem17 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem18 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.foregroundCustomPictureEdit = new LaserMark.CustomPictureEdit(this.components);
-            this.backgroundCustomPictureEdit = new LaserMark.CustomPictureEdit(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.rightPanelControl)).BeginInit();
             this.rightPanelControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RightHeadlayoutControl)).BeginInit();
@@ -144,6 +144,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.foregroundCustomPictureEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backgroundCustomPictureEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit6.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit7.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit8.Properties)).BeginInit();
@@ -173,8 +175,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem18)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.foregroundCustomPictureEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.backgroundCustomPictureEdit.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // rightPanelControl
@@ -199,7 +199,7 @@
             this.RightHeadlayoutControl.Controls.Add(this.saveCheckEdit);
             this.RightHeadlayoutControl.Controls.Add(this.saveBtn);
             this.RightHeadlayoutControl.Controls.Add(this.deleteBtn);
-            this.RightHeadlayoutControl.Controls.Add(this.updateEzd);
+            this.RightHeadlayoutControl.Controls.Add(this.dialodUpdateEzd);
             this.RightHeadlayoutControl.Controls.Add(this.bgImageLbl);
             this.RightHeadlayoutControl.Controls.Add(this.ezdFileLbl);
             this.RightHeadlayoutControl.Controls.Add(this.uploadEzdBtn);
@@ -320,16 +320,16 @@
             this.deleteBtn.Text = "Delete";
             this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);
             // 
-            // updateEzd
+            // dialodUpdateEzd
             // 
-            this.updateEzd.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.updateEzd.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("updateEzd.ImageOptions.SvgImage")));
-            this.updateEzd.Location = new System.Drawing.Point(311, 12);
-            this.updateEzd.Name = "updateEzd";
-            this.updateEzd.Size = new System.Drawing.Size(39, 36);
-            this.updateEzd.StyleController = this.RightHeadlayoutControl;
-            this.updateEzd.TabIndex = 15;
-            this.updateEzd.Click += new System.EventHandler(this.UpdateEzd_Click);
+            this.dialodUpdateEzd.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.dialodUpdateEzd.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("updateEzd.ImageOptions.SvgImage")));
+            this.dialodUpdateEzd.Location = new System.Drawing.Point(312, 12);
+            this.dialodUpdateEzd.Name = "dialodUpdateEzd";
+            this.dialodUpdateEzd.Size = new System.Drawing.Size(38, 36);
+            this.dialodUpdateEzd.StyleController = this.RightHeadlayoutControl;
+            this.dialodUpdateEzd.TabIndex = 15;
+            this.dialodUpdateEzd.Click += new System.EventHandler(this.DialogUpdateEzd_Click);
             // 
             // bgImageLbl
             // 
@@ -511,10 +511,10 @@
             // 
             // layoutControlItem12
             // 
-            this.layoutControlItem12.Control = this.updateEzd;
-            this.layoutControlItem12.Location = new System.Drawing.Point(299, 0);
+            this.layoutControlItem12.Control = this.dialodUpdateEzd;
+            this.layoutControlItem12.Location = new System.Drawing.Point(300, 0);
             this.layoutControlItem12.Name = "layoutControlItem12";
-            this.layoutControlItem12.Size = new System.Drawing.Size(43, 40);
+            this.layoutControlItem12.Size = new System.Drawing.Size(42, 40);
             this.layoutControlItem12.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem12.TextVisible = false;
             // 
@@ -523,7 +523,7 @@
             this.emptySpaceItem3.AllowHotTrack = false;
             this.emptySpaceItem3.Location = new System.Drawing.Point(0, 0);
             this.emptySpaceItem3.Name = "emptySpaceItem3";
-            this.emptySpaceItem3.Size = new System.Drawing.Size(299, 40);
+            this.emptySpaceItem3.Size = new System.Drawing.Size(300, 40);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem4
@@ -731,6 +731,26 @@
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(556, 472);
             this.panelControl1.TabIndex = 4;
+            // 
+            // foregroundCustomPictureEdit
+            // 
+            this.foregroundCustomPictureEdit.Location = new System.Drawing.Point(25, 78);
+            this.foregroundCustomPictureEdit.Name = "foregroundCustomPictureEdit";
+            this.foregroundCustomPictureEdit.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.foregroundCustomPictureEdit.Properties.Appearance.Options.UseBackColor = true;
+            this.foregroundCustomPictureEdit.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+            this.foregroundCustomPictureEdit.Size = new System.Drawing.Size(480, 293);
+            this.foregroundCustomPictureEdit.TabIndex = 1;
+            // 
+            // backgroundCustomPictureEdit
+            // 
+            this.backgroundCustomPictureEdit.Location = new System.Drawing.Point(11, 38);
+            this.backgroundCustomPictureEdit.Name = "backgroundCustomPictureEdit";
+            this.backgroundCustomPictureEdit.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.backgroundCustomPictureEdit.Properties.Appearance.Options.UseBackColor = true;
+            this.backgroundCustomPictureEdit.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+            this.backgroundCustomPictureEdit.Size = new System.Drawing.Size(510, 373);
+            this.backgroundCustomPictureEdit.TabIndex = 0;
             // 
             // pictureEdit6
             // 
@@ -1059,26 +1079,6 @@
             this.emptySpaceItem18.Size = new System.Drawing.Size(11, 30);
             this.emptySpaceItem18.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // foregroundCustomPictureEdit
-            // 
-            this.foregroundCustomPictureEdit.Location = new System.Drawing.Point(25, 78);
-            this.foregroundCustomPictureEdit.Name = "foregroundCustomPictureEdit";
-            this.foregroundCustomPictureEdit.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.foregroundCustomPictureEdit.Properties.Appearance.Options.UseBackColor = true;
-            this.foregroundCustomPictureEdit.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.foregroundCustomPictureEdit.Size = new System.Drawing.Size(480, 293);
-            this.foregroundCustomPictureEdit.TabIndex = 1;
-            // 
-            // backgroundCustomPictureEdit
-            // 
-            this.backgroundCustomPictureEdit.Location = new System.Drawing.Point(11, 38);
-            this.backgroundCustomPictureEdit.Name = "backgroundCustomPictureEdit";
-            this.backgroundCustomPictureEdit.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.backgroundCustomPictureEdit.Properties.Appearance.Options.UseBackColor = true;
-            this.backgroundCustomPictureEdit.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.backgroundCustomPictureEdit.Size = new System.Drawing.Size(510, 373);
-            this.backgroundCustomPictureEdit.TabIndex = 0;
-            // 
             // LMForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1134,6 +1134,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.foregroundCustomPictureEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backgroundCustomPictureEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit6.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit7.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit8.Properties)).EndInit();
@@ -1163,8 +1165,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem18)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.foregroundCustomPictureEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.backgroundCustomPictureEdit.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1185,7 +1185,7 @@
         private DevExpress.XtraEditors.CheckEdit saveCheckEdit;
         private DevExpress.XtraEditors.SimpleButton saveBtn;
         private DevExpress.XtraEditors.SimpleButton deleteBtn;
-        private DevExpress.XtraEditors.SimpleButton updateEzd;
+        private DevExpress.XtraEditors.SimpleButton dialodUpdateEzd;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem6;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem7;

@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using Api;
+using LaserMark.State;
 
 namespace LaserMark
 {
@@ -14,13 +15,7 @@ namespace LaserMark
     {
         public List<Tuple<string, StringBuilder>> ezdObjects;
 
-        public static string current_token;
-
         public static List<Tuple<string, StringBuilder>> updatedEzdObjects;
-
-        private Image _bgOriginalImage;
-
-        private Image _ezdOriginalImage;
 
         private enum UploadType
         {
@@ -35,19 +30,15 @@ namespace LaserMark
 
         #region events method
 
-        private void UpdateEzd_Click(object sender, EventArgs e)
+        private void DialogUpdateEzd_Click(object sender, EventArgs e)
         {
-            if (this._ezdOriginalImage != null)
+            if (CurrentEzd.EzdPictureEdit != null)
             {
                 try
                 {
-                    if (!string.IsNullOrEmpty(current_token))
+                    if (!string.IsNullOrEmpty(CurrentApiData.Token))
                     {
-                        new UpdateEzdDataFromApi(this,
-                            this.rightPanelControl,
-                            current_token,
-                            this.foregroundCustomPictureEdit,
-                            new Size(rightPanelControl.Width, this.ClientRectangle.Height));
+                        new UpdateEzdDataFromApi(this);
                     }
                     else
                     {
@@ -55,10 +46,7 @@ namespace LaserMark
 
                         updatedEzdObjects = new List<Tuple<string, StringBuilder>>();
 
-                        new UpdateEzdData(ezdObjects,
-                            this.rightPanelControl,
-                            this.foregroundCustomPictureEdit,
-                            new Size(rightPanelControl.Width, this.ClientRectangle.Height));
+                        new UpdateEzdData(ezdObjects);
                     }
                 }
                 catch (Exception)
@@ -89,21 +77,19 @@ namespace LaserMark
 
                 CustomFlyoutDialog.ShowForm(this, null, new GetEvents(result));
 
-                this.urlTextEdit.Text = $@"http://openeventor.ru/api/event/{current_token}/get_event";
+                this.urlTextEdit.Text = $@"http://openeventor.ru/api/event/{CurrentApiData.Token}/get_event";
             }
             catch (Exception ex)
             {
                 XtraMessageBox.Show("Нет доступ к апи, проверьте интернет соединения", "Error", MessageBoxButtons.OK);
-                if (this._ezdOriginalImage != null)
+
+                if (CurrentEzd.EzdPictureEdit != null)
                 {
                     ezdObjects = EzdDataControl.ReopositoryEzdFile.GetEzdData();
 
                     updatedEzdObjects = new List<Tuple<string, StringBuilder>>();
 
-                    new UpdateEzdData(ezdObjects,
-                        this.rightPanelControl,
-                        this.foregroundCustomPictureEdit,
-                        new Size(rightPanelControl.Width, this.ClientRectangle.Height));
+                    new UpdateEzdData(ezdObjects);
                 }
             }
         }
@@ -140,6 +126,12 @@ namespace LaserMark
 
             // Init forground image parent
             this.foregroundCustomPictureEdit.Parent = this.backgroundCustomPictureEdit;
+
+            CurrentUIData.RightLayoutControl = this.rightPanelControl;
+
+            CurrentUIData.WindowSize = new Size(ClientRectangle.Width, ClientRectangle.Height);
+
+            CurrentUIData.RightPanelSize = new Size(this.rightPanelControl.Width, ClientRectangle.Height);
         }
 
         #endregion
@@ -166,7 +158,7 @@ namespace LaserMark
 
                             this.foregroundCustomPictureEdit.Image = img;
 
-                            this._ezdOriginalImage = img;
+                            CurrentEzd.EzdPictureEdit = this.foregroundCustomPictureEdit;
 
                             this.ezdFileLbl.Text = Path.GetFileName(ofd.FileName);
                         }
@@ -181,10 +173,7 @@ namespace LaserMark
 
                         this.backgroundCustomPictureEdit.Image = img;
 
-                        this.backgroundCustomPictureEdit.Width = img.Width;
-                        this.backgroundCustomPictureEdit.Height = img.Height;
-
-                        this._bgOriginalImage = img;
+                        CurrentEzd.BgPictureEdit = this.backgroundCustomPictureEdit;
 
                         this.bgImageLbl.Text = Path.GetFileName(ofd.FileName);
                     }

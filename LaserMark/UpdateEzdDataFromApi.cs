@@ -12,41 +12,34 @@ using DevExpress.XtraLayout;
 using Newtonsoft.Json;
 using Api;
 using EzdDataControl;
+using LaserMark.State;
 
 namespace LaserMark
 {
     public partial class UpdateEzdDataFromApi : DevExpress.XtraEditors.XtraUserControl
     {
-        private string _token;
-
-        private CustomPictureEdit _ezdPictureEdit;
-
         private Competitor _competitor;
-
-        private CompetitorList _competitors;
 
         private LMForm _form;
 
-        PanelControl _rightLayoutControl;
+        private PictureEdit _currentEzd;
 
-
-        public UpdateEzdDataFromApi(LMForm form, PanelControl layoutControl, string token, Control control, Size windowSize)
+        public UpdateEzdDataFromApi(LMForm form)
         {
-            _token = token;
-            _ezdPictureEdit = (CustomPictureEdit)control;
             _form = form;
-            _rightLayoutControl = layoutControl;
-            this.MaximumSize = windowSize;
-            this.MinimumSize = windowSize;
+            _currentEzd = (PictureEdit)CurrentEzd.EzdPictureEdit;
+
+            this.MaximumSize = CurrentUIData.RightPanelSize;
+            this.MinimumSize = CurrentUIData.RightPanelSize;
 
             InitializeComponent();
 
-            this.marginUpEmptySpace.MinSize = new Size(0, windowSize.Height / 6);
+            this.marginUpEmptySpace.MinSize = new Size(0, CurrentUIData.RightPanelSize.Height / 6);
 
-            this.flyoutPanel1.OwnerControl = layoutControl;
+            this.flyoutPanel1.OwnerControl = CurrentUIData.RightLayoutControl;
 
-            this.flyoutPanel1.MaximumSize = windowSize;
-            this.flyoutPanel1.MinimumSize = windowSize;
+            this.flyoutPanel1.MaximumSize = CurrentUIData.RightPanelSize;
+            this.flyoutPanel1.MinimumSize = CurrentUIData.RightPanelSize;
 
             this.flyoutPanel1.ShowPopup();
         }
@@ -75,11 +68,11 @@ namespace LaserMark
             try
             {
                 var task = await Queries.GetRequestAsync(
-                  $@"http://openeventor.ru/api/event/{_token}/get_competitor/bib/{this.searchTextEdit.Text}");
+                  $@"http://openeventor.ru/api/event/{CurrentApiData.Token}/get_competitor/bib/{this.searchTextEdit.Text}");
 
                 this._competitor = JsonConvert.DeserializeObject<Competitor>(task);
 
-                this._ezdPictureEdit.Image = ReopositoryEzdFile.UpdateEzdApi(_competitor.CompetitorData, this._ezdPictureEdit.Width, this._ezdPictureEdit.Height);
+                this._currentEzd.Image = ReopositoryEzdFile.UpdateEzdApi(_competitor.CompetitorData, this._currentEzd.Width, this._currentEzd.Height);
             }
             catch (Exception ex)
             {
@@ -87,29 +80,16 @@ namespace LaserMark
             }
         }
 
-        private async void SearchSimpleButton_Click(object sender, EventArgs e)
+        private void SearchSimpleButton_Click(object sender, EventArgs e)
         {
-            await GetCompetitorList();
-
-            CustomFlyoutDialog.ShowForm(_form, null, new SearchCompetitor(_competitors));
-        }
-
-        private async Task GetCompetitorList()
-        {
-            var task = await Queries.GetRequestAsync(
-                               $@"http://openeventor.ru/api/event/{_token}/get_competitors");
-
-            this._competitors = JsonConvert.DeserializeObject<CompetitorList>(task);
+            CustomFlyoutDialog.ShowForm(_form, null, new SearchCompetitor(this.searchTextEdit));
         }
 
         private void editEzdBtn_Click(object sender, EventArgs e)
         {
             var ezdObjects = EzdDataControl.ReopositoryEzdFile.GetEzdData();
 
-            new UpdateEzdData(ezdObjects,
-                _rightLayoutControl,
-                _ezdPictureEdit,
-                new Size(_rightLayoutControl.Width, this.ClientRectangle.Height));
+            new UpdateEzdData(ezdObjects);
         }
     }
 }

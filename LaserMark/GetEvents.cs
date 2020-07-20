@@ -57,7 +57,7 @@ namespace LaserMark
 
             if (data != null)
             {
-                LMForm.current_token = data.Token;
+                State.CurrentApiData.Token = data.Token;
 
                 ((SimpleButton)sender).DialogResult = System.Windows.Forms.DialogResult.OK;
             }

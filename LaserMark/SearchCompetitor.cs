@@ -10,33 +10,59 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using Telerik.WinControls.UI;
 using Api;
+using Newtonsoft.Json;
+using EzdDataControl;
+using System.Threading;
+using LaserMark.State;
 
 namespace LaserMark
 {
     public partial class SearchCompetitor : DevExpress.XtraEditors.XtraUserControl
     {
         private CompetitorList _competitors;
-        public SearchCompetitor(CompetitorList competitorList)
+
+        private PictureEdit _currentEzd;
+
+        private TextEdit _bib_text;
+
+        RadWaitingBar waitingBar;
+
+        CancellationTokenSource _tokenSource = new CancellationTokenSource();
+
+        public SearchCompetitor(TextEdit bib)
         {
-            _competitors = competitorList;
+            _currentEzd = (PictureEdit)CurrentEzd.EzdPictureEdit;
+
+            _bib_text = bib;
 
             InitializeComponent();
+
+            waitingBar = new RadWaitingBar();
+            waitingBar.AssociatedControl = this.layoutControl2;
+            waitingBar.Size = new System.Drawing.Size(80, 80);
+            waitingBar.WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
+
+            this.layoutControl2.Controls.Add(waitingBar);
         }
 
         private void SearchCompetitor_Load(object sender, EventArgs e)
         {
-            this.radListView1.Columns.AddRange(
-                new Telerik.WinControls.UI.ListViewDetailColumn[]
+            this.listView1.Columns.AddRange(
+                new ColumnHeader[]
                     {
-                        new Telerik.WinControls.UI.ListViewDetailColumn(@"Bib"),
-                        new Telerik.WinControls.UI.ListViewDetailColumn(@"First Name"),
-                        new Telerik.WinControls.UI.ListViewDetailColumn( @"Last Name"),
-                        new Telerik.WinControls.UI.ListViewDetailColumn(@"Birth year")
+                        new ColumnHeader() { Text = @"Bib", Width = 50 },
+                        new ColumnHeader() { Text = @"First Name", Width = 150 },
+                        new ColumnHeader() { Text = @"Last Name", Width = 150 },
+                        new ColumnHeader() { Text = @"Birth year", Width = 100 }
                     });
+
+            this.Height = CurrentUIData.WindowSize.Height - (CurrentUIData.WindowSize.Height / 3);
+            this.Width = CurrentUIData.WindowSize.Width - (CurrentUIData.WindowSize.Width / 3);
         }
 
-        private void searchControl1_TextChanged(object sender, EventArgs e)
+        private async void searchControl1_TextChanged(object sender, EventArgs e)
         {
+
             var search = this.searchControl.Text;
 
             if (string.IsNullOrEmpty(search))
@@ -44,9 +70,65 @@ namespace LaserMark
                 return;
             }
 
-            this.radListView1.Items.Clear();
+            
 
-            var listItem = new List<ListViewDataItem>();
+            if (_tokenSource != null)
+            {
+                _tokenSource.Cancel();
+            }
+
+            _tokenSource = new CancellationTokenSource();
+
+            try
+            {
+                
+                this.waitingBar.StartWaiting();
+
+                await loadPrestatieGetCompetitorAsync(this.listView1, _tokenSource.Token, search);
+            }
+            catch (OperationCanceledException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private async Task loadPrestatieGetCompetitorAsync(ListView list, CancellationToken token, string search)
+        {
+            await Task.Delay(500, token).ConfigureAwait(true);
+            try
+            {
+                var task = await Queries.GetRequestAsync(
+                  $@"http://openeventor.ru/event/{CurrentApiData.Token}/plugins/engraver/get?search={this.searchControl.Text}");
+
+                this._competitors = JsonConvert.DeserializeObject<CompetitorList>(task);
+
+                UpdateListView(search);
+
+                this.waitingBar.StopWaiting();
+
+                token.ThrowIfCancellationRequested();
+
+            }
+            catch (OperationCanceledException ex)
+            {
+                throw;
+            }
+            catch (Exception Ex)
+            {
+                throw;
+            }
+        }
+
+        private void UpdateListView(string search)
+        {
+            this.listView1.Items.Clear();
+
+            var listItem = new List<ListViewItem>();
+
+            if (this._competitors.CompetitorDatas == null || this._competitors.CompetitorDatas.Count <= 0)
+            {
+                return;
+            }
 
             var competitors = this._competitors.CompetitorDatas.Where(
                 p => p.LastName != null && p.LastName.ToLower().Contains(search.Trim().ToLower()));
@@ -56,12 +138,12 @@ namespace LaserMark
             searchedCompetitorList.ForEach(
                    p =>
                    {
-                       listItem.Add(new ListViewDataItem(p.LastName, new[] { p.Bib, p.FirstName, p.LastName, p.BirthYear }));
+                       listItem.Add(new ListViewItem(new[] { p.Bib, p.FirstName, p.LastName, p.BirthYear }));
                    });
 
-            this.radListView1.Items.AddRange(listItem.ToArray());
+            this.listView1.Items.AddRange(listItem.ToArray());
 
-            if (this.radListView1.Items.Count <= 0)
+            if (this.listView1.Items.Count <= 0)
             {
                 this.errorLabel.Text = $@"Info: Поиск не дал результатов";
             }
@@ -77,6 +159,11 @@ namespace LaserMark
 
             if (btn.Text == "<")
             {
+                if (searchControl.Text.Length <= 0)
+                {
+                    return;
+                }
+
                 searchControl.Text = searchControl.Text.Remove(searchControl.Text.Length - 1);
             }
             else
@@ -87,7 +174,19 @@ namespace LaserMark
 
         private void enterBtn_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(this.searchControl.Text) 
+                || this._competitors == null 
+                || this._competitors.CompetitorDatas == null 
+                || this._competitors.CompetitorDatas.Count <= 0)
+            {
+                return;
+            }
 
+            var selectedCompotitor = this._competitors.CompetitorDatas.FirstOrDefault(p => p.Bib == this.listView1.SelectedItems[0].Text);
+
+            this._bib_text.Text = selectedCompotitor.Bib;
+
+            this._currentEzd.Image = ReopositoryEzdFile.UpdateEzdApi(selectedCompotitor, this._currentEzd.Width, this._currentEzd.Height);
         }
     }
 }
