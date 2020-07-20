@@ -36,7 +36,6 @@
             this.loginTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.passwordTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.loginBtn = new DevExpress.XtraEditors.SimpleButton();
-            this.saveCheckEdit = new DevExpress.XtraEditors.CheckEdit();
             this.saveBtn = new DevExpress.XtraEditors.SimpleButton();
             this.deleteBtn = new DevExpress.XtraEditors.SimpleButton();
             this.dialodUpdateEzd = new DevExpress.XtraEditors.SimpleButton();
@@ -50,9 +49,7 @@
             this.emptySpaceItem7 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem10 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -103,6 +100,8 @@
             this.emptySpaceItem14 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem17 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem18 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem19 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.rightPanelControl)).BeginInit();
             this.rightPanelControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RightHeadlayoutControl)).BeginInit();
@@ -110,7 +109,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.urlTextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loginTextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.passwordTextEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.saveCheckEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bgImageLbl.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ezdFileLbl.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
@@ -119,9 +117,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
@@ -175,6 +171,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem18)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem19)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
             this.SuspendLayout();
             // 
             // rightPanelControl
@@ -196,7 +194,6 @@
             this.RightHeadlayoutControl.Controls.Add(this.loginTextEdit);
             this.RightHeadlayoutControl.Controls.Add(this.passwordTextEdit);
             this.RightHeadlayoutControl.Controls.Add(this.loginBtn);
-            this.RightHeadlayoutControl.Controls.Add(this.saveCheckEdit);
             this.RightHeadlayoutControl.Controls.Add(this.saveBtn);
             this.RightHeadlayoutControl.Controls.Add(this.deleteBtn);
             this.RightHeadlayoutControl.Controls.Add(this.dialodUpdateEzd);
@@ -268,27 +265,13 @@
             this.loginBtn.Appearance.Options.UseBackColor = true;
             this.loginBtn.Appearance.Options.UseFont = true;
             this.loginBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.loginBtn.Location = new System.Drawing.Point(220, 218);
+            this.loginBtn.Location = new System.Drawing.Point(219, 211);
             this.loginBtn.Name = "loginBtn";
-            this.loginBtn.Size = new System.Drawing.Size(130, 36);
+            this.loginBtn.Size = new System.Drawing.Size(131, 36);
             this.loginBtn.StyleController = this.RightHeadlayoutControl;
             this.loginBtn.TabIndex = 7;
             this.loginBtn.Text = "Login";
             this.loginBtn.Click += new System.EventHandler(this.LoginBtn_Click);
-            // 
-            // saveCheckEdit
-            // 
-            this.saveCheckEdit.Location = new System.Drawing.Point(12, 218);
-            this.saveCheckEdit.MinimumSize = new System.Drawing.Size(0, 30);
-            this.saveCheckEdit.Name = "saveCheckEdit";
-            this.saveCheckEdit.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.saveCheckEdit.Properties.Appearance.ForeColor = System.Drawing.Color.White;
-            this.saveCheckEdit.Properties.Appearance.Options.UseFont = true;
-            this.saveCheckEdit.Properties.Appearance.Options.UseForeColor = true;
-            this.saveCheckEdit.Properties.Caption = "Save";
-            this.saveCheckEdit.Size = new System.Drawing.Size(204, 30);
-            this.saveCheckEdit.StyleController = this.RightHeadlayoutControl;
-            this.saveCheckEdit.TabIndex = 8;
             // 
             // saveBtn
             // 
@@ -323,7 +306,7 @@
             // dialodUpdateEzd
             // 
             this.dialodUpdateEzd.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.dialodUpdateEzd.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("updateEzd.ImageOptions.SvgImage")));
+            this.dialodUpdateEzd.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("dialodUpdateEzd.ImageOptions.SvgImage")));
             this.dialodUpdateEzd.Location = new System.Drawing.Point(312, 12);
             this.dialodUpdateEzd.Name = "dialodUpdateEzd";
             this.dialodUpdateEzd.Size = new System.Drawing.Size(38, 36);
@@ -333,7 +316,7 @@
             // 
             // bgImageLbl
             // 
-            this.bgImageLbl.Location = new System.Drawing.Point(54, 273);
+            this.bgImageLbl.Location = new System.Drawing.Point(54, 276);
             this.bgImageLbl.MaximumSize = new System.Drawing.Size(0, 30);
             this.bgImageLbl.MinimumSize = new System.Drawing.Size(0, 26);
             this.bgImageLbl.Name = "bgImageLbl";
@@ -348,7 +331,7 @@
             // 
             // ezdFileLbl
             // 
-            this.ezdFileLbl.Location = new System.Drawing.Point(54, 303);
+            this.ezdFileLbl.Location = new System.Drawing.Point(54, 306);
             this.ezdFileLbl.MinimumSize = new System.Drawing.Size(0, 26);
             this.ezdFileLbl.Name = "ezdFileLbl";
             this.ezdFileLbl.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -364,7 +347,7 @@
             // 
             this.uploadEzdBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uploadEzdBtn.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("uploadEzdBtn.ImageOptions.SvgImage")));
-            this.uploadEzdBtn.Location = new System.Drawing.Point(305, 303);
+            this.uploadEzdBtn.Location = new System.Drawing.Point(305, 306);
             this.uploadEzdBtn.Name = "uploadEzdBtn";
             this.uploadEzdBtn.Size = new System.Drawing.Size(45, 26);
             this.uploadEzdBtn.StyleController = this.RightHeadlayoutControl;
@@ -376,7 +359,7 @@
             // 
             this.uploadBGBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uploadBGBtn.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("uploadBGBtn.ImageOptions.SvgImage")));
-            this.uploadBGBtn.Location = new System.Drawing.Point(305, 273);
+            this.uploadBGBtn.Location = new System.Drawing.Point(305, 276);
             this.uploadBGBtn.MaximumSize = new System.Drawing.Size(0, 30);
             this.uploadBGBtn.Name = "uploadBGBtn";
             this.uploadBGBtn.Size = new System.Drawing.Size(45, 26);
@@ -395,9 +378,7 @@
             this.emptySpaceItem7,
             this.layoutControlItem2,
             this.layoutControlItem3,
-            this.emptySpaceItem5,
             this.layoutControlItem4,
-            this.layoutControlItem5,
             this.emptySpaceItem10,
             this.layoutControlItem12,
             this.emptySpaceItem3,
@@ -408,7 +389,9 @@
             this.layoutControlItem9,
             this.layoutControlItem11,
             this.emptySpaceItem8,
-            this.layoutControlItem10});
+            this.layoutControlItem10,
+            this.emptySpaceItem19,
+            this.emptySpaceItem5});
             this.Root.Name = "Root";
             this.Root.Size = new System.Drawing.Size(362, 545);
             this.Root.TextVisible = false;
@@ -468,45 +451,24 @@
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
-            // emptySpaceItem5
-            // 
-            this.emptySpaceItem5.AllowHotTrack = false;
-            this.emptySpaceItem5.Location = new System.Drawing.Point(0, 189);
-            this.emptySpaceItem5.Name = "emptySpaceItem5";
-            this.emptySpaceItem5.Size = new System.Drawing.Size(342, 17);
-            this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
-            // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.loginBtn;
-            this.layoutControlItem4.Location = new System.Drawing.Point(208, 206);
+            this.layoutControlItem4.Location = new System.Drawing.Point(207, 199);
             this.layoutControlItem4.MaxSize = new System.Drawing.Size(0, 40);
             this.layoutControlItem4.MinSize = new System.Drawing.Size(43, 40);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(134, 40);
+            this.layoutControlItem4.Size = new System.Drawing.Size(135, 40);
             this.layoutControlItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
-            // layoutControlItem5
-            // 
-            this.layoutControlItem5.Control = this.saveCheckEdit;
-            this.layoutControlItem5.Location = new System.Drawing.Point(0, 206);
-            this.layoutControlItem5.MaxSize = new System.Drawing.Size(0, 40);
-            this.layoutControlItem5.MinSize = new System.Drawing.Size(52, 40);
-            this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(208, 40);
-            this.layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem5.Text = "Save";
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem5.TextVisible = false;
-            // 
             // emptySpaceItem10
             // 
             this.emptySpaceItem10.AllowHotTrack = false;
-            this.emptySpaceItem10.Location = new System.Drawing.Point(0, 246);
+            this.emptySpaceItem10.Location = new System.Drawing.Point(0, 239);
             this.emptySpaceItem10.Name = "emptySpaceItem10";
-            this.emptySpaceItem10.Size = new System.Drawing.Size(342, 15);
+            this.emptySpaceItem10.Size = new System.Drawing.Size(342, 25);
             this.emptySpaceItem10.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem12
@@ -529,9 +491,9 @@
             // emptySpaceItem4
             // 
             this.emptySpaceItem4.AllowHotTrack = false;
-            this.emptySpaceItem4.Location = new System.Drawing.Point(0, 321);
+            this.emptySpaceItem4.Location = new System.Drawing.Point(0, 324);
             this.emptySpaceItem4.Name = "emptySpaceItem4";
-            this.emptySpaceItem4.Size = new System.Drawing.Size(342, 164);
+            this.emptySpaceItem4.Size = new System.Drawing.Size(342, 161);
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem6
@@ -541,7 +503,7 @@
             this.layoutControlItem6.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem6.AppearanceItemCaption.Options.UseForeColor = true;
             this.layoutControlItem6.Control = this.bgImageLbl;
-            this.layoutControlItem6.Location = new System.Drawing.Point(0, 261);
+            this.layoutControlItem6.Location = new System.Drawing.Point(0, 264);
             this.layoutControlItem6.MaxSize = new System.Drawing.Size(0, 36);
             this.layoutControlItem6.MinSize = new System.Drawing.Size(96, 30);
             this.layoutControlItem6.Name = "layoutControlItem6";
@@ -557,7 +519,7 @@
             this.layoutControlItem7.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem7.AppearanceItemCaption.Options.UseForeColor = true;
             this.layoutControlItem7.Control = this.ezdFileLbl;
-            this.layoutControlItem7.Location = new System.Drawing.Point(0, 291);
+            this.layoutControlItem7.Location = new System.Drawing.Point(0, 294);
             this.layoutControlItem7.MinSize = new System.Drawing.Size(96, 30);
             this.layoutControlItem7.Name = "layoutControlItem7";
             this.layoutControlItem7.Size = new System.Drawing.Size(293, 30);
@@ -568,7 +530,7 @@
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.uploadEzdBtn;
-            this.layoutControlItem8.Location = new System.Drawing.Point(293, 291);
+            this.layoutControlItem8.Location = new System.Drawing.Point(293, 294);
             this.layoutControlItem8.MaxSize = new System.Drawing.Size(0, 30);
             this.layoutControlItem8.MinSize = new System.Drawing.Size(49, 30);
             this.layoutControlItem8.Name = "layoutControlItem8";
@@ -580,7 +542,7 @@
             // layoutControlItem9
             // 
             this.layoutControlItem9.Control = this.uploadBGBtn;
-            this.layoutControlItem9.Location = new System.Drawing.Point(293, 261);
+            this.layoutControlItem9.Location = new System.Drawing.Point(293, 264);
             this.layoutControlItem9.MaxSize = new System.Drawing.Size(0, 40);
             this.layoutControlItem9.MinSize = new System.Drawing.Size(49, 30);
             this.layoutControlItem9.Name = "layoutControlItem9";
@@ -1079,6 +1041,22 @@
             this.emptySpaceItem18.Size = new System.Drawing.Size(11, 30);
             this.emptySpaceItem18.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // emptySpaceItem19
+            // 
+            this.emptySpaceItem19.AllowHotTrack = false;
+            this.emptySpaceItem19.Location = new System.Drawing.Point(0, 189);
+            this.emptySpaceItem19.Name = "emptySpaceItem19";
+            this.emptySpaceItem19.Size = new System.Drawing.Size(342, 10);
+            this.emptySpaceItem19.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // emptySpaceItem5
+            // 
+            this.emptySpaceItem5.AllowHotTrack = false;
+            this.emptySpaceItem5.Location = new System.Drawing.Point(0, 199);
+            this.emptySpaceItem5.Name = "emptySpaceItem5";
+            this.emptySpaceItem5.Size = new System.Drawing.Size(207, 40);
+            this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
+            // 
             // LMForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1100,7 +1078,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.urlTextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.loginTextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.passwordTextEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.saveCheckEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bgImageLbl.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ezdFileLbl.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
@@ -1109,9 +1086,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
@@ -1165,6 +1140,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem18)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem19)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1182,7 +1159,6 @@
         private DevExpress.XtraEditors.TextEdit loginTextEdit;
         private DevExpress.XtraEditors.TextEdit passwordTextEdit;
         private DevExpress.XtraEditors.SimpleButton loginBtn;
-        private DevExpress.XtraEditors.CheckEdit saveCheckEdit;
         private DevExpress.XtraEditors.SimpleButton saveBtn;
         private DevExpress.XtraEditors.SimpleButton deleteBtn;
         private DevExpress.XtraEditors.SimpleButton dialodUpdateEzd;
@@ -1191,9 +1167,7 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem7;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
-        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem5;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem10;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
@@ -1244,6 +1218,8 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem18;
         private CustomPictureEdit foregroundCustomPictureEdit;
         private CustomPictureEdit backgroundCustomPictureEdit;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem19;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem5;
     }
 }
 

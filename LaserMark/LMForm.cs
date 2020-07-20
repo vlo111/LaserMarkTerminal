@@ -157,6 +157,8 @@ namespace LaserMark
                                 this.foregroundCustomPictureEdit.Height);
 
                             this.foregroundCustomPictureEdit.Image = img;
+                            this.foregroundCustomPictureEdit.Width = img.Width;
+                            this.foregroundCustomPictureEdit.Height = img.Height;
 
                             CurrentEzd.EzdPictureEdit = this.foregroundCustomPictureEdit;
 
@@ -172,6 +174,8 @@ namespace LaserMark
                         var img = Image.FromFile(ofd.FileName);
 
                         this.backgroundCustomPictureEdit.Image = img;
+                        this.backgroundCustomPictureEdit.Width = img.Width;
+                        this.backgroundCustomPictureEdit.Height = img.Height;
 
                         CurrentEzd.BgPictureEdit = this.backgroundCustomPictureEdit;
 

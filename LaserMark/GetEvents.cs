@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
 using System.Data;
 using System.Linq;
 using DevExpress.XtraEditors;
 using Api;
+using Telerik.WinControls.UI;
+using LaserMark.State;
 
 namespace LaserMark
 {
     public partial class GetEvents : DevExpress.XtraEditors.XtraUserControl
     {
         private readonly IList<Event> _data;
+
+        RadWaitingBar waitingBar;
 
         public GetEvents(Eventor eventor)
         {
@@ -24,6 +26,13 @@ namespace LaserMark
                 this.listBoxControl1.DataSource = this._data;
                 this.listBoxControl1.DisplayMember = "Name";
             }
+
+            waitingBar = new RadWaitingBar();
+            waitingBar.AssociatedControl = this.layoutControl21;
+            waitingBar.Size = new System.Drawing.Size(80, 80);
+            waitingBar.WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
+
+            this.layoutControl21.Controls.Add(waitingBar);
         }
 
         private void KeyBtns_Click(object sender, EventArgs e)
@@ -61,6 +70,12 @@ namespace LaserMark
 
                 ((SimpleButton)sender).DialogResult = System.Windows.Forms.DialogResult.OK;
             }
+        }
+
+        private void GetEvents_Load(object sender, EventArgs e)
+        {
+            this.Height = CurrentUIData.WindowSize.Height - (CurrentUIData.WindowSize.Height / 3);
+            this.Width = CurrentUIData.WindowSize.Width - (CurrentUIData.WindowSize.Width / 3);
         }
     }
 }

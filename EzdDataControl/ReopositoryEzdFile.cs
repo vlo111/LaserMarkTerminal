@@ -13,8 +13,8 @@ namespace EzdDataControl
     {
         public enum ModeFontSize
         {
-            reduce,
-            zoom
+            Reduce,
+            Zoom
         }
         public static List<Tuple<string, StringBuilder>> GetEzdData()
         {
@@ -128,15 +128,15 @@ namespace EzdDataControl
                 ref nTextAlign,
                 ref bBold,
                 ref bItalic);
-            if (mode == ModeFontSize.reduce)
+            if (mode == ModeFontSize.Reduce)
             {
-                height_ezd = height_ezd - 0.125d;
-                width_ezd = width_ezd - 0.0125d;
+                height_ezd = height_ezd - 0.0062d;
+                width_ezd = width_ezd - 0.0062d;
             }
             else
             {
-                height_ezd = height_ezd + 0.125d;
-                width_ezd = width_ezd + 0.0125d;
+                height_ezd = height_ezd + 0.0062d;
+                width_ezd = width_ezd + 0.0062d;
             }
 
 
