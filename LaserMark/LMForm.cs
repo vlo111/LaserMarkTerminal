@@ -8,14 +8,33 @@ using System.Windows.Forms;
 using Newtonsoft.Json;
 using Api;
 using LaserMark.State;
+using LaserMark.DataAccess;
+using System.Linq;
+using PictureControl;
+using System.Drawing.Imaging;
+using Telerik.WinControls.UI;
 
 namespace LaserMark
 {
     public partial class LMForm : XtraForm
     {
+        #region Fields
+
+        RadWaitingBar waitingBar;
+
+        private string filesPath = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName) + @"\files\";
+
+        private string iconsPath = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName) + @"\icon\";
+
         public List<Tuple<string, StringBuilder>> ezdObjects;
 
         public static List<Tuple<string, StringBuilder>> updatedEzdObjects;
+
+        private List<UserDataDto> userDataDtos;
+
+        private int currentPEindex = 0;
+
+        #endregion
 
         private enum UploadType
         {
@@ -26,6 +45,8 @@ namespace LaserMark
         public LMForm()
         {
             InitializeComponent();
+
+            Initial();
         }
 
         #region events method
@@ -65,6 +86,8 @@ namespace LaserMark
         {
             try
             {
+                this.waitingBar.StartWaiting();
+
                 // Get all events
                 var base64HeaderValue = Convert.ToBase64String(
                     System.Text.Encoding.UTF8.GetBytes($@"{this.loginTextEdit.Text}:{this.passwordTextEdit.Text}"));
@@ -75,13 +98,17 @@ namespace LaserMark
 
                 var result = JsonConvert.DeserializeObject<Eventor>(task);
 
+                this.waitingBar.StopWaiting();
+
                 CustomFlyoutDialog.ShowForm(this, null, new GetEvents(result));
 
                 this.urlTextEdit.Text = $@"http://openeventor.ru/api/event/{CurrentApiData.Token}/get_event";
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show("Нет доступ к апи, проверьте интернет соединения", "Error", MessageBoxButtons.OK);
+                this.waitingBar.StopWaiting();
+
+                XtraMessageBox.Show("Проверте логин и пароль или нет доступ к апи, проверьте интернет соединения", "Error", MessageBoxButtons.OK);
 
                 if (CurrentEzd.EzdPictureEdit != null)
                 {
@@ -111,21 +138,75 @@ namespace LaserMark
 
         private void saveBtn_Click(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(this.loginTextEdit.Text) && !string.IsNullOrEmpty(this.passwordTextEdit.Text)
+                && !string.IsNullOrEmpty(this.urlTextEdit.Text))
+            {
+                if (CurrentEzd.BgPictureEdit != null && CurrentEzd.EzdPictureEdit != null)
+                {
+                    if (currentPEindex < 10)
+                    {
+                        // current saved
+                        var selectedImage = this.layoutControl1.Controls.OfType<PictureEdit>()
+                            .Where(c => c.TabIndex == currentPEindex + 40)
+                            .Select(c => c)
+                            .First();
 
+                        selectedImage.Image = Images.PanelToImage(this.panelControl1);
+                        selectedImage.Cursor = Cursors.Hand;
+                        selectedImage.Properties.ReadOnly = false;
+
+                        if (currentPEindex < 9)
+                        {
+                            // next plus
+                            var selectedNextImage = this.layoutControl1.Controls.OfType<PictureEdit>()
+                                .Where(c => c.TabIndex == (currentPEindex + 1) + 40)
+                                .Select(c => c)
+                                .First();
+
+                            if (selectedNextImage.Properties.ReadOnly)
+                            {
+                                selectedNextImage.Image = Image.FromFile($@"{iconsPath}plus.png");
+                                selectedNextImage.Cursor = Cursors.Hand;
+                                selectedNextImage.Properties.ReadOnly = false;
+                            }
+                        }
+
+
+                        // var userData = UserDataRepository.GetByTabIndex(currentPEindex);
+
+                        DeleteFileIfUpdated();
+
+                        SaveImageDB();
+                    }
+                    else
+                    {
+                        XtraMessageBox.Show("Сохранение настроек заполнен, выберите какой нибудь раздел для изменение", "Error", MessageBoxButtons.OK);
+                    }
+                }
+                else
+                {
+                    XtraMessageBox.Show("Выберите обложку или esd файл", "Error", MessageBoxButtons.OK);
+                }
+            }
+            else
+            {
+                XtraMessageBox.Show("Пожалуйста войдите в систему", "Error", MessageBoxButtons.OK);
+            }
         }
 
         private void LMForm_Load(object sender, EventArgs e)
         {
             this.rightPanelControl.Width = ClientRectangle.Width / 100 * 25;
-            var width_panel = this.headerLbl.Width;
-
-            var onePictureWidth = width_panel / 10 - 10;
-
-            // Connect sdk
-            var err = JczLmc.Initialize(Application.StartupPath, true);
 
             // Init forground image parent
             this.foregroundCustomPictureEdit.Parent = this.backgroundCustomPictureEdit;
+
+            if (this.backgroundCustomPictureEdit.Image != null && this.foregroundCustomPictureEdit != null)
+            {
+                CurrentEzd.BgPictureEdit = this.backgroundCustomPictureEdit;
+
+                CurrentEzd.EzdPictureEdit = this.foregroundCustomPictureEdit;
+            }
 
             CurrentUIData.RightLayoutControl = this.rightPanelControl;
 
@@ -134,7 +215,113 @@ namespace LaserMark
             CurrentUIData.RightPanelSize = new Size(this.rightPanelControl.Width, ClientRectangle.Height);
         }
 
+        private void PictureEdit_Click(object sender, EventArgs e)
+        {
+            var picture = ((PictureEdit)sender);
+
+            if (!picture.Properties.ReadOnly)
+            {
+                currentPEindex = picture.TabIndex - 40;
+
+                var userDto = UserDataRepository.GetByTabIndex(currentPEindex);
+
+                if (userDto.Token != null)
+                {
+                    UpdateImageFromDB(userDto);
+                }
+                else
+                {
+                    // delete
+                }
+            }
+        }
+
         #endregion
+
+        private void Initial()
+        {
+            // Init waiting bar
+            waitingBar = new RadWaitingBar();
+            waitingBar.AssociatedControl = this.layoutControl1;
+            waitingBar.Size = new System.Drawing.Size(80, 80);
+            waitingBar.WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
+
+            this.layoutControl1.Controls.Add(waitingBar);
+
+            try
+            {
+                // Connect sdk
+                var err = JczLmc.Initialize(Application.StartupPath, true);
+
+                userDataDtos = UserDataRepository.GetAllUser();
+
+                if (userDataDtos.Count > 0)
+                {
+
+                    for (int i = 0; i < userDataDtos.Count; i++)
+                    {
+                        var image = this.layoutControl1.Controls.OfType<PictureEdit>()
+                            .Where(c => c.TabIndex == i + 40)
+                            .Select(c => c)
+                            .First();
+
+                        image.Image = Image.FromFile($@"{filesPath}{userDataDtos[i].FullImage}");
+                        image.Properties.ReadOnly = false;
+                        image.Cursor = Cursors.Hand;
+
+                        currentPEindex = i;
+                        if (i + 1 == userDataDtos.Count)
+                        {
+                            // last plus
+                            var lastImage = this.layoutControl1.Controls.OfType<PictureEdit>()
+                                .Where(c => c.TabIndex == (i + 1) + 40)
+                                .Select(c => c)
+                                .First();
+
+                            lastImage.Image = Image.FromFile($@"{iconsPath}plus.png");
+                            lastImage.Cursor = Cursors.Hand;
+                            lastImage.Properties.ReadOnly = false;
+                        }
+                    }
+
+                    var currentData = userDataDtos.LastOrDefault();
+
+                    UpdateImageFromDB(currentData);
+
+                    this.loginTextEdit.Text = currentData.Login;
+
+                    this.currentPEindex = (int)currentData.Sequence;
+
+                    this.passwordTextEdit.Text = currentData.Password;
+
+                    this.urlTextEdit.Text = currentData.Url;
+
+                    CurrentApiData.Token = currentData.Token;
+                }
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
+            }
+        }
+
+        private void UpdateImageFromDB(UserDataDto currentData)
+        {
+            var bg_image = Image.FromFile($@"{filesPath}{currentData.BgImage}");
+            this.backgroundCustomPictureEdit.Image = bg_image;
+            this.backgroundCustomPictureEdit.Width = bg_image.Width;
+            this.backgroundCustomPictureEdit.Height = bg_image.Height;
+            this.backgroundCustomPictureEdit.Location = new Point((int)currentData.BgImagePosX, (int)currentData.BgImagePosY);
+
+            var fgImg = EzdDataControl.ReopositoryEzdFile.LoadImage($@"{filesPath}{currentData.EzdImage}",
+                                this.foregroundCustomPictureEdit.Width,
+                                this.foregroundCustomPictureEdit.Height);
+            this.foregroundCustomPictureEdit.Image = fgImg;
+            this.foregroundCustomPictureEdit.Width = fgImg.Width;
+            this.foregroundCustomPictureEdit.Height = fgImg.Height;
+            this.foregroundCustomPictureEdit.Location = new Point((int)currentData.EzdImagePosX, (int)currentData.EzdImagePosY);
+
+        }
 
         private void Upload(UploadType type)
         {
@@ -147,20 +334,30 @@ namespace LaserMark
             {
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
+
                     // take BG|FG image from fileName
                     if (type == UploadType.Ezd)
                     {
                         try
                         {
-                            var img = EzdDataControl.ReopositoryEzdFile.LoadImage(ofd.FileName,
+                            var ezdNewName = $@"{DateTime.Now.Ticks}{Path.GetFileName(ofd.FileName)}";
+
+                            var ezdInCurentPath = Path.Combine(filesPath, ezdNewName);
+
+                            File.Copy(ofd.FileName, ezdInCurentPath);
+
+                            var img = EzdDataControl.ReopositoryEzdFile.LoadImage(ezdInCurentPath,
                                 this.foregroundCustomPictureEdit.Width,
                                 this.foregroundCustomPictureEdit.Height);
 
+                            this.foregroundCustomPictureEdit.Properties.NullText = ezdNewName;
                             this.foregroundCustomPictureEdit.Image = img;
                             this.foregroundCustomPictureEdit.Width = img.Width;
                             this.foregroundCustomPictureEdit.Height = img.Height;
 
                             CurrentEzd.EzdPictureEdit = this.foregroundCustomPictureEdit;
+
+                            CurrentEzd.OriginalEzdPictureEdit = this.foregroundCustomPictureEdit;
 
                             this.ezdFileLbl.Text = Path.GetFileName(ofd.FileName);
                         }
@@ -173,6 +370,13 @@ namespace LaserMark
                     {
                         var img = Image.FromFile(ofd.FileName);
 
+                        var bgImgNewName = $@"{DateTime.Now.Ticks}{Path.GetFileName(ofd.FileName)}";
+
+                        var bgInCurentPath = Path.Combine(filesPath, bgImgNewName);
+
+                        File.Copy(ofd.FileName, bgInCurentPath);
+
+                        this.backgroundCustomPictureEdit.Properties.NullText = bgImgNewName;
                         this.backgroundCustomPictureEdit.Image = img;
                         this.backgroundCustomPictureEdit.Width = img.Width;
                         this.backgroundCustomPictureEdit.Height = img.Height;
@@ -183,6 +387,68 @@ namespace LaserMark
                     }
                 }
             }
+        }
+
+        private void DeleteFileIfUpdated()
+        {
+            if (UserDataRepository.CheckSquence(currentPEindex) > 0)
+            {
+                UserDataDto userData = UserDataRepository.GetByTabIndex(currentPEindex);
+
+                if (userData.Token != null)
+                {
+                    if (File.Exists($@"{filesPath}{userData.BgImage}"))
+                    {
+                        if (userData.EzdImage != this.foregroundCustomPictureEdit.Properties.NullText)
+                        {
+                            File.Delete($@"{filesPath}{userData.BgImage}");
+                        }
+                    }
+
+                    if (File.Exists($@"{filesPath}{userData.EzdImage}"))
+                    {
+                        if (userData.EzdImage != this.foregroundCustomPictureEdit.Properties.NullText)
+                        {
+                            File.Delete($@"{filesPath}{userData.EzdImage}");
+                        }
+                    }
+
+                    if (File.Exists($@"{filesPath}{userData.FullImage}"))
+                    {
+                        File.Delete($@"{filesPath}{userData.FullImage}");
+                    }
+                }
+            }
+        }
+
+        private void SaveImageDB()
+        {
+            #region Save fullimage in file
+
+            // save full(panel) file
+            var fullPanel_imageName = $@"Full_{this.bgImageLbl.Text}{DateTime.Now.Ticks}.jpg";
+            var full_image = Images.PanelToImage(this.panelControl1);
+
+            full_image.Save($@"{filesPath}{fullPanel_imageName}", ImageFormat.Jpeg);
+
+            #endregion
+
+            // save db
+            UserDataRepository.Insert(new UserDataDto
+            {
+                Token = CurrentApiData.Token,
+                Sequence = currentPEindex,
+                Login = this.loginTextEdit.Text,
+                Password = this.passwordTextEdit.Text,
+                Url = this.urlTextEdit.Text,
+                BgImage = this.backgroundCustomPictureEdit.Properties.NullText,
+                EzdImage = this.foregroundCustomPictureEdit.Properties.NullText,
+                FullImage = fullPanel_imageName,
+                BgImagePosX = this.backgroundCustomPictureEdit.Location.X,
+                BgImagePosY = this.backgroundCustomPictureEdit.Location.Y,
+                EzdImagePosX = this.foregroundCustomPictureEdit.Location.X,
+                EzdImagePosY = this.foregroundCustomPictureEdit.Location.Y
+            });
         }
     }
 }

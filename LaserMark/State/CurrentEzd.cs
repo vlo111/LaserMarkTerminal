@@ -9,6 +9,8 @@ namespace LaserMark.State
 {
     public class CurrentEzd
     {
+        public static Control OriginalEzdPictureEdit { get; set; }
+
         public static Control EzdPictureEdit { get; set; }
 
         public static Control BgPictureEdit { get; set; }

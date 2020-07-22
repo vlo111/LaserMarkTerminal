@@ -53,6 +53,14 @@ namespace PictureControl
             }
         }
 
+        public static Image ByteArrayToImage( byte[] imageBytes)
+        {
+            using (var ms = new MemoryStream(imageBytes))
+            {
+                return Bitmap.FromStream(ms);
+            }
+        }
+
         public static Bitmap PanelToImage(PanelControl control)
         {
             int width = control.Size.Width;

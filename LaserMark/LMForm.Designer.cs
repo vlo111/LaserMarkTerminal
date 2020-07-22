@@ -61,6 +61,8 @@
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem8 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem19 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.leftPanelControl = new DevExpress.XtraEditors.PanelControl();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.pictureEdit5 = new DevExpress.XtraEditors.PictureEdit();
@@ -100,8 +102,6 @@
             this.emptySpaceItem14 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem17 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem18 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.emptySpaceItem19 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.rightPanelControl)).BeginInit();
             this.rightPanelControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RightHeadlayoutControl)).BeginInit();
@@ -129,6 +129,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem19)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.leftPanelControl)).BeginInit();
             this.leftPanelControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -171,8 +173,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem18)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem19)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
             this.SuspendLayout();
             // 
             // rightPanelControl
@@ -583,6 +583,22 @@
             this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem10.TextVisible = false;
             // 
+            // emptySpaceItem19
+            // 
+            this.emptySpaceItem19.AllowHotTrack = false;
+            this.emptySpaceItem19.Location = new System.Drawing.Point(0, 189);
+            this.emptySpaceItem19.Name = "emptySpaceItem19";
+            this.emptySpaceItem19.Size = new System.Drawing.Size(342, 10);
+            this.emptySpaceItem19.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // emptySpaceItem5
+            // 
+            this.emptySpaceItem5.AllowHotTrack = false;
+            this.emptySpaceItem5.Location = new System.Drawing.Point(0, 199);
+            this.emptySpaceItem5.Name = "emptySpaceItem5";
+            this.emptySpaceItem5.Size = new System.Drawing.Size(207, 40);
+            this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
+            // 
             // leftPanelControl
             // 
             this.leftPanelControl.Appearance.BackColor = System.Drawing.Color.White;
@@ -619,68 +635,84 @@
             // 
             // pictureEdit5
             // 
-            this.pictureEdit5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureEdit5.EditValue = ((object)(resources.GetObject("pictureEdit5.EditValue")));
+            this.pictureEdit5.Cursor = System.Windows.Forms.Cursors.Default;
             this.pictureEdit5.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.pictureEdit5.Location = new System.Drawing.Point(196, 31);
+            this.pictureEdit5.Location = new System.Drawing.Point(191, 31);
             this.pictureEdit5.Name = "pictureEdit5";
+            this.pictureEdit5.Properties.NullText = " ";
+            this.pictureEdit5.Properties.ReadOnly = true;
             this.pictureEdit5.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit5.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.pictureEdit5.Size = new System.Drawing.Size(29, 26);
+            this.pictureEdit5.Size = new System.Drawing.Size(36, 36);
             this.pictureEdit5.StyleController = this.layoutControl1;
-            this.pictureEdit5.TabIndex = 9;
+            this.pictureEdit5.TabIndex = 43;
+            this.pictureEdit5.Tag = "4";
+            this.pictureEdit5.Click += new System.EventHandler(this.PictureEdit_Click);
             // 
             // pictureEdit4
             // 
-            this.pictureEdit4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureEdit4.EditValue = ((object)(resources.GetObject("pictureEdit4.EditValue")));
+            this.pictureEdit4.Cursor = System.Windows.Forms.Cursors.Default;
             this.pictureEdit4.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.pictureEdit4.Location = new System.Drawing.Point(139, 31);
+            this.pictureEdit4.Location = new System.Drawing.Point(134, 31);
             this.pictureEdit4.Name = "pictureEdit4";
+            this.pictureEdit4.Properties.NullText = " ";
+            this.pictureEdit4.Properties.ReadOnly = true;
             this.pictureEdit4.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit4.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.pictureEdit4.Size = new System.Drawing.Size(29, 26);
+            this.pictureEdit4.Size = new System.Drawing.Size(36, 36);
             this.pictureEdit4.StyleController = this.layoutControl1;
-            this.pictureEdit4.TabIndex = 8;
+            this.pictureEdit4.TabIndex = 42;
+            this.pictureEdit4.Tag = "3";
+            this.pictureEdit4.Click += new System.EventHandler(this.PictureEdit_Click);
             // 
             // pictureEdit3
             // 
-            this.pictureEdit3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureEdit3.EditValue = ((object)(resources.GetObject("pictureEdit3.EditValue")));
+            this.pictureEdit3.Cursor = System.Windows.Forms.Cursors.Default;
             this.pictureEdit3.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.pictureEdit3.Location = new System.Drawing.Point(527, 31);
+            this.pictureEdit3.Location = new System.Drawing.Point(522, 31);
             this.pictureEdit3.Name = "pictureEdit3";
+            this.pictureEdit3.Properties.NullText = " ";
+            this.pictureEdit3.Properties.ReadOnly = true;
             this.pictureEdit3.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit3.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.pictureEdit3.Size = new System.Drawing.Size(29, 26);
+            this.pictureEdit3.Size = new System.Drawing.Size(36, 36);
             this.pictureEdit3.StyleController = this.layoutControl1;
-            this.pictureEdit3.TabIndex = 7;
+            this.pictureEdit3.TabIndex = 49;
+            this.pictureEdit3.Tag = "10";
+            this.pictureEdit3.Visible = false;
+            this.pictureEdit3.Click += new System.EventHandler(this.PictureEdit_Click);
             // 
             // pictureEdit2
             // 
-            this.pictureEdit2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureEdit2.EditValue = ((object)(resources.GetObject("pictureEdit2.EditValue")));
+            this.pictureEdit2.Cursor = System.Windows.Forms.Cursors.Default;
             this.pictureEdit2.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.pictureEdit2.Location = new System.Drawing.Point(81, 31);
+            this.pictureEdit2.Location = new System.Drawing.Point(76, 31);
             this.pictureEdit2.Name = "pictureEdit2";
+            this.pictureEdit2.Properties.NullText = " ";
+            this.pictureEdit2.Properties.ReadOnly = true;
             this.pictureEdit2.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit2.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.pictureEdit2.Size = new System.Drawing.Size(29, 26);
+            this.pictureEdit2.Size = new System.Drawing.Size(36, 36);
             this.pictureEdit2.StyleController = this.layoutControl1;
-            this.pictureEdit2.TabIndex = 6;
+            this.pictureEdit2.TabIndex = 41;
+            this.pictureEdit2.Tag = "2";
+            this.pictureEdit2.Click += new System.EventHandler(this.PictureEdit_Click);
             // 
             // pictureEdit1
             // 
-            this.pictureEdit1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureEdit1.EditValue = ((object)(resources.GetObject("pictureEdit1.EditValue")));
             this.pictureEdit1.ImeMode = System.Windows.Forms.ImeMode.On;
             this.pictureEdit1.Location = new System.Drawing.Point(23, 31);
             this.pictureEdit1.Name = "pictureEdit1";
+            this.pictureEdit1.Properties.NullText = " ";
+            this.pictureEdit1.Properties.ReadOnly = true;
             this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.pictureEdit1.Size = new System.Drawing.Size(29, 26);
+            this.pictureEdit1.Size = new System.Drawing.Size(36, 36);
             this.pictureEdit1.StyleController = this.layoutControl1;
-            this.pictureEdit1.TabIndex = 5;
+            this.pictureEdit1.TabIndex = 40;
+            this.pictureEdit1.Tag = "1";
+            this.pictureEdit1.Visible = false;
+            this.pictureEdit1.Click += new System.EventHandler(this.PictureEdit_Click);
             // 
             // panelControl1
             // 
@@ -689,14 +721,14 @@
             this.panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panelControl1.Controls.Add(this.foregroundCustomPictureEdit);
             this.panelControl1.Controls.Add(this.backgroundCustomPictureEdit);
-            this.panelControl1.Location = new System.Drawing.Point(12, 61);
+            this.panelControl1.Location = new System.Drawing.Point(12, 71);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(556, 472);
+            this.panelControl1.Size = new System.Drawing.Size(556, 462);
             this.panelControl1.TabIndex = 4;
             // 
             // foregroundCustomPictureEdit
             // 
-            this.foregroundCustomPictureEdit.Location = new System.Drawing.Point(25, 78);
+            this.foregroundCustomPictureEdit.Location = new System.Drawing.Point(29, 85);
             this.foregroundCustomPictureEdit.Name = "foregroundCustomPictureEdit";
             this.foregroundCustomPictureEdit.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.foregroundCustomPictureEdit.Properties.Appearance.Options.UseBackColor = true;
@@ -716,68 +748,84 @@
             // 
             // pictureEdit6
             // 
-            this.pictureEdit6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureEdit6.EditValue = ((object)(resources.GetObject("pictureEdit6.EditValue")));
+            this.pictureEdit6.Cursor = System.Windows.Forms.Cursors.Default;
             this.pictureEdit6.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.pictureEdit6.Location = new System.Drawing.Point(253, 31);
+            this.pictureEdit6.Location = new System.Drawing.Point(248, 31);
             this.pictureEdit6.Name = "pictureEdit6";
+            this.pictureEdit6.Properties.NullText = " ";
+            this.pictureEdit6.Properties.ReadOnly = true;
             this.pictureEdit6.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit6.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.pictureEdit6.Size = new System.Drawing.Size(29, 26);
+            this.pictureEdit6.Size = new System.Drawing.Size(36, 36);
             this.pictureEdit6.StyleController = this.layoutControl1;
-            this.pictureEdit6.TabIndex = 10;
+            this.pictureEdit6.TabIndex = 44;
+            this.pictureEdit6.Tag = "5";
+            this.pictureEdit6.Click += new System.EventHandler(this.PictureEdit_Click);
             // 
             // pictureEdit7
             // 
-            this.pictureEdit7.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureEdit7.EditValue = ((object)(resources.GetObject("pictureEdit7.EditValue")));
+            this.pictureEdit7.Cursor = System.Windows.Forms.Cursors.Default;
             this.pictureEdit7.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.pictureEdit7.Location = new System.Drawing.Point(309, 31);
+            this.pictureEdit7.Location = new System.Drawing.Point(304, 31);
             this.pictureEdit7.Name = "pictureEdit7";
+            this.pictureEdit7.Properties.NullText = " ";
+            this.pictureEdit7.Properties.ReadOnly = true;
             this.pictureEdit7.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit7.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.pictureEdit7.Size = new System.Drawing.Size(29, 26);
+            this.pictureEdit7.Size = new System.Drawing.Size(36, 36);
             this.pictureEdit7.StyleController = this.layoutControl1;
-            this.pictureEdit7.TabIndex = 11;
+            this.pictureEdit7.TabIndex = 45;
+            this.pictureEdit7.Tag = "6";
+            this.pictureEdit7.Click += new System.EventHandler(this.PictureEdit_Click);
             // 
             // pictureEdit8
             // 
-            this.pictureEdit8.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureEdit8.EditValue = ((object)(resources.GetObject("pictureEdit8.EditValue")));
+            this.pictureEdit8.Cursor = System.Windows.Forms.Cursors.Default;
             this.pictureEdit8.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.pictureEdit8.Location = new System.Drawing.Point(365, 31);
+            this.pictureEdit8.Location = new System.Drawing.Point(360, 31);
             this.pictureEdit8.Name = "pictureEdit8";
+            this.pictureEdit8.Properties.NullText = " ";
+            this.pictureEdit8.Properties.ReadOnly = true;
             this.pictureEdit8.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit8.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.pictureEdit8.Size = new System.Drawing.Size(29, 26);
+            this.pictureEdit8.Size = new System.Drawing.Size(36, 36);
             this.pictureEdit8.StyleController = this.layoutControl1;
-            this.pictureEdit8.TabIndex = 12;
+            this.pictureEdit8.TabIndex = 46;
+            this.pictureEdit8.Tag = "7";
+            this.pictureEdit8.Click += new System.EventHandler(this.PictureEdit_Click);
             // 
             // pictureEdit9
             // 
-            this.pictureEdit9.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureEdit9.EditValue = ((object)(resources.GetObject("pictureEdit9.EditValue")));
+            this.pictureEdit9.Cursor = System.Windows.Forms.Cursors.Default;
             this.pictureEdit9.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.pictureEdit9.Location = new System.Drawing.Point(420, 31);
+            this.pictureEdit9.Location = new System.Drawing.Point(415, 31);
             this.pictureEdit9.Name = "pictureEdit9";
+            this.pictureEdit9.Properties.NullText = " ";
+            this.pictureEdit9.Properties.ReadOnly = true;
             this.pictureEdit9.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit9.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.pictureEdit9.Size = new System.Drawing.Size(29, 26);
+            this.pictureEdit9.Size = new System.Drawing.Size(36, 36);
             this.pictureEdit9.StyleController = this.layoutControl1;
-            this.pictureEdit9.TabIndex = 13;
+            this.pictureEdit9.TabIndex = 47;
+            this.pictureEdit9.Tag = "8";
+            this.pictureEdit9.Click += new System.EventHandler(this.PictureEdit_Click);
             // 
             // pictureEdit10
             // 
-            this.pictureEdit10.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureEdit10.EditValue = ((object)(resources.GetObject("pictureEdit10.EditValue")));
+            this.pictureEdit10.Cursor = System.Windows.Forms.Cursors.Default;
             this.pictureEdit10.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.pictureEdit10.Location = new System.Drawing.Point(474, 31);
+            this.pictureEdit10.Location = new System.Drawing.Point(469, 31);
             this.pictureEdit10.Name = "pictureEdit10";
+            this.pictureEdit10.Properties.NullText = " ";
+            this.pictureEdit10.Properties.ReadOnly = true;
             this.pictureEdit10.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit10.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.pictureEdit10.Size = new System.Drawing.Size(29, 26);
+            this.pictureEdit10.Size = new System.Drawing.Size(36, 36);
             this.pictureEdit10.StyleController = this.layoutControl1;
-            this.pictureEdit10.TabIndex = 14;
+            this.pictureEdit10.TabIndex = 48;
+            this.pictureEdit10.Tag = "9";
+            this.pictureEdit10.Visible = false;
+            this.pictureEdit10.Click += new System.EventHandler(this.PictureEdit_Click);
             // 
             // layoutControlGroup1
             // 
@@ -827,9 +875,9 @@
             // layoutControlItem13
             // 
             this.layoutControlItem13.Control = this.panelControl1;
-            this.layoutControlItem13.Location = new System.Drawing.Point(0, 49);
+            this.layoutControlItem13.Location = new System.Drawing.Point(0, 59);
             this.layoutControlItem13.Name = "layoutControlItem13";
-            this.layoutControlItem13.Size = new System.Drawing.Size(560, 476);
+            this.layoutControlItem13.Size = new System.Drawing.Size(560, 466);
             this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem13.TextVisible = false;
             // 
@@ -840,7 +888,7 @@
             this.layoutControlItem14.MaxSize = new System.Drawing.Size(70, 70);
             this.layoutControlItem14.MinSize = new System.Drawing.Size(30, 30);
             this.layoutControlItem14.Name = "layoutControlItem14";
-            this.layoutControlItem14.Size = new System.Drawing.Size(33, 30);
+            this.layoutControlItem14.Size = new System.Drawing.Size(40, 40);
             this.layoutControlItem14.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem14.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem14.TextVisible = false;
@@ -848,19 +896,19 @@
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(44, 19);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(51, 19);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(25, 30);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(13, 40);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem15
             // 
             this.layoutControlItem15.Control = this.pictureEdit2;
-            this.layoutControlItem15.Location = new System.Drawing.Point(69, 19);
+            this.layoutControlItem15.Location = new System.Drawing.Point(64, 19);
             this.layoutControlItem15.MaxSize = new System.Drawing.Size(70, 70);
             this.layoutControlItem15.MinSize = new System.Drawing.Size(30, 30);
             this.layoutControlItem15.Name = "layoutControlItem15";
-            this.layoutControlItem15.Size = new System.Drawing.Size(33, 30);
+            this.layoutControlItem15.Size = new System.Drawing.Size(40, 40);
             this.layoutControlItem15.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem15.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem15.TextVisible = false;
@@ -868,11 +916,11 @@
             // layoutControlItem16
             // 
             this.layoutControlItem16.Control = this.pictureEdit3;
-            this.layoutControlItem16.Location = new System.Drawing.Point(515, 19);
+            this.layoutControlItem16.Location = new System.Drawing.Point(510, 19);
             this.layoutControlItem16.MaxSize = new System.Drawing.Size(70, 70);
             this.layoutControlItem16.MinSize = new System.Drawing.Size(30, 30);
             this.layoutControlItem16.Name = "layoutControlItem16";
-            this.layoutControlItem16.Size = new System.Drawing.Size(33, 30);
+            this.layoutControlItem16.Size = new System.Drawing.Size(40, 40);
             this.layoutControlItem16.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem16.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem16.TextVisible = false;
@@ -880,19 +928,19 @@
             // emptySpaceItem9
             // 
             this.emptySpaceItem9.AllowHotTrack = false;
-            this.emptySpaceItem9.Location = new System.Drawing.Point(102, 19);
+            this.emptySpaceItem9.Location = new System.Drawing.Point(104, 19);
             this.emptySpaceItem9.Name = "emptySpaceItem9";
-            this.emptySpaceItem9.Size = new System.Drawing.Size(25, 30);
+            this.emptySpaceItem9.Size = new System.Drawing.Size(18, 40);
             this.emptySpaceItem9.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem17
             // 
             this.layoutControlItem17.Control = this.pictureEdit4;
-            this.layoutControlItem17.Location = new System.Drawing.Point(127, 19);
+            this.layoutControlItem17.Location = new System.Drawing.Point(122, 19);
             this.layoutControlItem17.MaxSize = new System.Drawing.Size(70, 70);
             this.layoutControlItem17.MinSize = new System.Drawing.Size(30, 30);
             this.layoutControlItem17.Name = "layoutControlItem17";
-            this.layoutControlItem17.Size = new System.Drawing.Size(33, 30);
+            this.layoutControlItem17.Size = new System.Drawing.Size(40, 40);
             this.layoutControlItem17.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem17.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem17.TextVisible = false;
@@ -900,19 +948,19 @@
             // emptySpaceItem11
             // 
             this.emptySpaceItem11.AllowHotTrack = false;
-            this.emptySpaceItem11.Location = new System.Drawing.Point(160, 19);
+            this.emptySpaceItem11.Location = new System.Drawing.Point(162, 19);
             this.emptySpaceItem11.Name = "emptySpaceItem11";
-            this.emptySpaceItem11.Size = new System.Drawing.Size(24, 30);
+            this.emptySpaceItem11.Size = new System.Drawing.Size(17, 40);
             this.emptySpaceItem11.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem18
             // 
             this.layoutControlItem18.Control = this.pictureEdit5;
-            this.layoutControlItem18.Location = new System.Drawing.Point(184, 19);
+            this.layoutControlItem18.Location = new System.Drawing.Point(179, 19);
             this.layoutControlItem18.MaxSize = new System.Drawing.Size(70, 70);
             this.layoutControlItem18.MinSize = new System.Drawing.Size(30, 30);
             this.layoutControlItem18.Name = "layoutControlItem18";
-            this.layoutControlItem18.Size = new System.Drawing.Size(33, 30);
+            this.layoutControlItem18.Size = new System.Drawing.Size(40, 40);
             this.layoutControlItem18.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem18.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem18.TextVisible = false;
@@ -920,19 +968,19 @@
             // emptySpaceItem12
             // 
             this.emptySpaceItem12.AllowHotTrack = false;
-            this.emptySpaceItem12.Location = new System.Drawing.Point(217, 19);
+            this.emptySpaceItem12.Location = new System.Drawing.Point(219, 19);
             this.emptySpaceItem12.Name = "emptySpaceItem12";
-            this.emptySpaceItem12.Size = new System.Drawing.Size(24, 30);
+            this.emptySpaceItem12.Size = new System.Drawing.Size(17, 40);
             this.emptySpaceItem12.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem19
             // 
             this.layoutControlItem19.Control = this.pictureEdit6;
-            this.layoutControlItem19.Location = new System.Drawing.Point(241, 19);
+            this.layoutControlItem19.Location = new System.Drawing.Point(236, 19);
             this.layoutControlItem19.MaxSize = new System.Drawing.Size(70, 70);
             this.layoutControlItem19.MinSize = new System.Drawing.Size(30, 30);
             this.layoutControlItem19.Name = "layoutControlItem19";
-            this.layoutControlItem19.Size = new System.Drawing.Size(33, 30);
+            this.layoutControlItem19.Size = new System.Drawing.Size(40, 40);
             this.layoutControlItem19.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem19.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem19.TextVisible = false;
@@ -940,19 +988,19 @@
             // emptySpaceItem13
             // 
             this.emptySpaceItem13.AllowHotTrack = false;
-            this.emptySpaceItem13.Location = new System.Drawing.Point(274, 19);
+            this.emptySpaceItem13.Location = new System.Drawing.Point(276, 19);
             this.emptySpaceItem13.Name = "emptySpaceItem13";
-            this.emptySpaceItem13.Size = new System.Drawing.Size(23, 30);
+            this.emptySpaceItem13.Size = new System.Drawing.Size(16, 40);
             this.emptySpaceItem13.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem20
             // 
             this.layoutControlItem20.Control = this.pictureEdit7;
-            this.layoutControlItem20.Location = new System.Drawing.Point(297, 19);
+            this.layoutControlItem20.Location = new System.Drawing.Point(292, 19);
             this.layoutControlItem20.MaxSize = new System.Drawing.Size(70, 70);
             this.layoutControlItem20.MinSize = new System.Drawing.Size(30, 30);
             this.layoutControlItem20.Name = "layoutControlItem20";
-            this.layoutControlItem20.Size = new System.Drawing.Size(33, 30);
+            this.layoutControlItem20.Size = new System.Drawing.Size(40, 40);
             this.layoutControlItem20.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem20.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem20.TextVisible = false;
@@ -960,19 +1008,19 @@
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(330, 19);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(332, 19);
             this.emptySpaceItem2.Name = "marginUpEmptySpace";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(23, 30);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(16, 40);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem21
             // 
             this.layoutControlItem21.Control = this.pictureEdit8;
-            this.layoutControlItem21.Location = new System.Drawing.Point(353, 19);
+            this.layoutControlItem21.Location = new System.Drawing.Point(348, 19);
             this.layoutControlItem21.MaxSize = new System.Drawing.Size(70, 70);
             this.layoutControlItem21.MinSize = new System.Drawing.Size(30, 30);
             this.layoutControlItem21.Name = "layoutControlItem21";
-            this.layoutControlItem21.Size = new System.Drawing.Size(33, 30);
+            this.layoutControlItem21.Size = new System.Drawing.Size(40, 40);
             this.layoutControlItem21.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem21.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem21.TextVisible = false;
@@ -980,19 +1028,19 @@
             // emptySpaceItem15
             // 
             this.emptySpaceItem15.AllowHotTrack = false;
-            this.emptySpaceItem15.Location = new System.Drawing.Point(386, 19);
+            this.emptySpaceItem15.Location = new System.Drawing.Point(388, 19);
             this.emptySpaceItem15.Name = "emptySpaceItem15";
-            this.emptySpaceItem15.Size = new System.Drawing.Size(22, 30);
+            this.emptySpaceItem15.Size = new System.Drawing.Size(15, 40);
             this.emptySpaceItem15.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem22
             // 
             this.layoutControlItem22.Control = this.pictureEdit9;
-            this.layoutControlItem22.Location = new System.Drawing.Point(408, 19);
+            this.layoutControlItem22.Location = new System.Drawing.Point(403, 19);
             this.layoutControlItem22.MaxSize = new System.Drawing.Size(70, 70);
             this.layoutControlItem22.MinSize = new System.Drawing.Size(30, 30);
             this.layoutControlItem22.Name = "obj2MinuslayoutControlItem";
-            this.layoutControlItem22.Size = new System.Drawing.Size(33, 30);
+            this.layoutControlItem22.Size = new System.Drawing.Size(40, 40);
             this.layoutControlItem22.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem22.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem22.TextVisible = false;
@@ -1000,19 +1048,19 @@
             // emptySpaceItem16
             // 
             this.emptySpaceItem16.AllowHotTrack = false;
-            this.emptySpaceItem16.Location = new System.Drawing.Point(441, 19);
+            this.emptySpaceItem16.Location = new System.Drawing.Point(443, 19);
             this.emptySpaceItem16.Name = "emptySpaceItem16";
-            this.emptySpaceItem16.Size = new System.Drawing.Size(21, 30);
+            this.emptySpaceItem16.Size = new System.Drawing.Size(14, 40);
             this.emptySpaceItem16.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem23
             // 
             this.layoutControlItem23.Control = this.pictureEdit10;
-            this.layoutControlItem23.Location = new System.Drawing.Point(462, 19);
+            this.layoutControlItem23.Location = new System.Drawing.Point(457, 19);
             this.layoutControlItem23.MaxSize = new System.Drawing.Size(70, 70);
             this.layoutControlItem23.MinSize = new System.Drawing.Size(30, 30);
             this.layoutControlItem23.Name = "layoutControlItem23";
-            this.layoutControlItem23.Size = new System.Drawing.Size(33, 30);
+            this.layoutControlItem23.Size = new System.Drawing.Size(40, 40);
             this.layoutControlItem23.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem23.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem23.TextVisible = false;
@@ -1020,17 +1068,17 @@
             // emptySpaceItem14
             // 
             this.emptySpaceItem14.AllowHotTrack = false;
-            this.emptySpaceItem14.Location = new System.Drawing.Point(495, 19);
+            this.emptySpaceItem14.Location = new System.Drawing.Point(497, 19);
             this.emptySpaceItem14.Name = "emptySpaceItem14";
-            this.emptySpaceItem14.Size = new System.Drawing.Size(20, 30);
+            this.emptySpaceItem14.Size = new System.Drawing.Size(13, 40);
             this.emptySpaceItem14.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem17
             // 
             this.emptySpaceItem17.AllowHotTrack = false;
-            this.emptySpaceItem17.Location = new System.Drawing.Point(548, 19);
+            this.emptySpaceItem17.Location = new System.Drawing.Point(550, 19);
             this.emptySpaceItem17.Name = "emptySpaceItem17";
-            this.emptySpaceItem17.Size = new System.Drawing.Size(12, 30);
+            this.emptySpaceItem17.Size = new System.Drawing.Size(10, 40);
             this.emptySpaceItem17.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem18
@@ -1038,24 +1086,8 @@
             this.emptySpaceItem18.AllowHotTrack = false;
             this.emptySpaceItem18.Location = new System.Drawing.Point(0, 19);
             this.emptySpaceItem18.Name = "emptySpaceItem18";
-            this.emptySpaceItem18.Size = new System.Drawing.Size(11, 30);
+            this.emptySpaceItem18.Size = new System.Drawing.Size(11, 40);
             this.emptySpaceItem18.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // emptySpaceItem19
-            // 
-            this.emptySpaceItem19.AllowHotTrack = false;
-            this.emptySpaceItem19.Location = new System.Drawing.Point(0, 189);
-            this.emptySpaceItem19.Name = "emptySpaceItem19";
-            this.emptySpaceItem19.Size = new System.Drawing.Size(342, 10);
-            this.emptySpaceItem19.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // emptySpaceItem5
-            // 
-            this.emptySpaceItem5.AllowHotTrack = false;
-            this.emptySpaceItem5.Location = new System.Drawing.Point(0, 199);
-            this.emptySpaceItem5.Name = "emptySpaceItem5";
-            this.emptySpaceItem5.Size = new System.Drawing.Size(207, 40);
-            this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
             // 
             // LMForm
             // 
@@ -1098,6 +1130,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem19)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.leftPanelControl)).EndInit();
             this.leftPanelControl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
@@ -1140,8 +1174,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem18)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem19)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
             this.ResumeLayout(false);
 
         }
