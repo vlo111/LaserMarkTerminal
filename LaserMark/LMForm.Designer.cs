@@ -286,7 +286,7 @@
             this.saveBtn.StyleController = this.RightHeadlayoutControl;
             this.saveBtn.TabIndex = 13;
             this.saveBtn.Text = "Save";
-            this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
+            this.saveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
             // 
             // deleteBtn
             // 
@@ -301,7 +301,7 @@
             this.deleteBtn.StyleController = this.RightHeadlayoutControl;
             this.deleteBtn.TabIndex = 14;
             this.deleteBtn.Text = "Delete";
-            this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);
+            this.deleteBtn.Click += new System.EventHandler(this.DeleteBtn_Click);
             // 
             // dialodUpdateEzd
             // 
@@ -728,7 +728,7 @@
             // 
             // foregroundCustomPictureEdit
             // 
-            this.foregroundCustomPictureEdit.Location = new System.Drawing.Point(29, 85);
+            this.foregroundCustomPictureEdit.Location = new System.Drawing.Point(45, 78);
             this.foregroundCustomPictureEdit.Name = "foregroundCustomPictureEdit";
             this.foregroundCustomPictureEdit.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.foregroundCustomPictureEdit.Properties.Appearance.Options.UseBackColor = true;
@@ -738,7 +738,7 @@
             // 
             // backgroundCustomPictureEdit
             // 
-            this.backgroundCustomPictureEdit.Location = new System.Drawing.Point(11, 38);
+            this.backgroundCustomPictureEdit.Location = new System.Drawing.Point(29, 30);
             this.backgroundCustomPictureEdit.Name = "backgroundCustomPictureEdit";
             this.backgroundCustomPictureEdit.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.backgroundCustomPictureEdit.Properties.Appearance.Options.UseBackColor = true;

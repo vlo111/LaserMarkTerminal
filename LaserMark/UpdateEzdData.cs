@@ -8,6 +8,7 @@ using DevExpress.XtraEditors;
 using System.Windows.Forms;
 using EzdDataControl;
 using LaserMark.State;
+using System.Threading.Tasks;
 
 namespace LaserMark
 {
@@ -272,6 +273,36 @@ namespace LaserMark
             {
                 XtraMessageBox.Show("Данные с этим номером не найдены", "Information", MessageBoxButtons.OK);
             }
+        }
+
+        private void RunBtn_Click(object sender, EventArgs e)
+        {
+            var btn = (SimpleButton)sender;
+
+            if (btn.Name == "Гравировать")
+            {
+                if (!backgroundWorker1.IsBusy)
+                {
+                    backgroundWorker1.RunWorkerAsync();
+                    btn.Name = "Стоп";
+                    btn.BackColor = Color.FromArgb(192, 0, 0);
+                }
+                else
+                {
+                    XtraMessageBox.Show("后台线程工作中", "Information", MessageBoxButtons.OK);
+                }
+            }
+            else
+            {
+                int nErr = JczLmc.StopMark();
+                btn.Name = "Гравировать";
+                btn.BackColor = Color.FromArgb(0, 192, 192);
+            }
+        }
+
+        private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            int nErr = JczLmc.Mark(false);
         }
     }
 }

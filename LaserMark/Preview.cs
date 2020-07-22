@@ -13,9 +13,10 @@ namespace LaserMark
 {
     public partial class Preview : DevExpress.XtraEditors.XtraForm
     {
-        public Preview()
+        public Preview(Bitmap image)
         {
             InitializeComponent();
+            this.pictureEdit1.Image = image;
         }
     }
 }

@@ -50,7 +50,7 @@
             this.simpleButton13 = new DevExpress.XtraEditors.SimpleButton();
             this.okSimpleButton = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton16 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton17 = new DevExpress.XtraEditors.SimpleButton();
+            this.runBtn = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.marginUpEmptySpace = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -81,6 +81,7 @@
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.flyoutPanel1)).BeginInit();
@@ -171,7 +172,7 @@
             this.layoutControl2.Controls.Add(this.simpleButton13);
             this.layoutControl2.Controls.Add(this.okSimpleButton);
             this.layoutControl2.Controls.Add(this.simpleButton16);
-            this.layoutControl2.Controls.Add(this.simpleButton17);
+            this.layoutControl2.Controls.Add(this.runBtn);
             this.layoutControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl2.Location = new System.Drawing.Point(0, 0);
             this.layoutControl2.Name = "layoutControl2";
@@ -405,18 +406,19 @@
             this.simpleButton16.TabIndex = 20;
             this.simpleButton16.Text = "TEST";
             // 
-            // simpleButton17
+            // runBtn
             // 
-            this.simpleButton17.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.simpleButton17.Appearance.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.simpleButton17.Appearance.Options.UseBackColor = true;
-            this.simpleButton17.Appearance.Options.UseFont = true;
-            this.simpleButton17.Location = new System.Drawing.Point(232, 434);
-            this.simpleButton17.Name = "simpleButton17";
-            this.simpleButton17.Size = new System.Drawing.Size(96, 66);
-            this.simpleButton17.StyleController = this.layoutControl2;
-            this.simpleButton17.TabIndex = 21;
-            this.simpleButton17.Text = "RUN";
+            this.runBtn.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.runBtn.Appearance.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.runBtn.Appearance.Options.UseBackColor = true;
+            this.runBtn.Appearance.Options.UseFont = true;
+            this.runBtn.Location = new System.Drawing.Point(232, 434);
+            this.runBtn.Name = "runBtn";
+            this.runBtn.Size = new System.Drawing.Size(96, 66);
+            this.runBtn.StyleController = this.layoutControl2;
+            this.runBtn.TabIndex = 21;
+            this.runBtn.Text = "RUN";
+            this.runBtn.Click += new System.EventHandler(this.RunBtn_Click);
             // 
             // layoutControlGroup1
             // 
@@ -768,7 +770,7 @@
             // 
             // layoutControlItem19
             // 
-            this.layoutControlItem19.Control = this.simpleButton17;
+            this.layoutControlItem19.Control = this.runBtn;
             this.layoutControlItem19.ControlAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.layoutControlItem19.CustomizationFormText = "layoutControlItem18";
             this.layoutControlItem19.Location = new System.Drawing.Point(210, 412);
@@ -816,6 +818,10 @@
             this.layoutControlItem1.Size = new System.Drawing.Size(378, 526);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
+            // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             // 
             // UpdateEzdDataFromApi
             // 
@@ -890,7 +896,7 @@
         private DevExpress.XtraEditors.SimpleButton simpleButton13;
         private DevExpress.XtraEditors.SimpleButton okSimpleButton;
         private DevExpress.XtraEditors.SimpleButton simpleButton16;
-        private DevExpress.XtraEditors.SimpleButton simpleButton17;
+        private DevExpress.XtraEditors.SimpleButton runBtn;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup3;
         private DevExpress.XtraLayout.EmptySpaceItem marginUpEmptySpace;
@@ -921,5 +927,6 @@
         private DevExpress.XtraLayout.LayoutControlGroup Root;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

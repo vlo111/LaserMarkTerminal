@@ -77,7 +77,7 @@
             this.panelControl1.Controls.Add(this.pictureEdit1);
             this.panelControl1.Location = new System.Drawing.Point(12, 12);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(823, 415);
+            this.panelControl1.Size = new System.Drawing.Size(823, 406);
             this.panelControl1.TabIndex = 4;
             // 
             // layoutControlItem1
@@ -85,7 +85,7 @@
             this.layoutControlItem1.Control = this.panelControl1;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(827, 419);
+            this.layoutControlItem1.Size = new System.Drawing.Size(827, 410);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
@@ -95,14 +95,18 @@
             this.pictureEdit1.Location = new System.Drawing.Point(2, 2);
             this.pictureEdit1.Name = "pictureEdit1";
             this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.pictureEdit1.Size = new System.Drawing.Size(819, 411);
+            this.pictureEdit1.Size = new System.Drawing.Size(819, 402);
             this.pictureEdit1.TabIndex = 0;
             // 
             // simpleButton1
             // 
-            this.simpleButton1.Location = new System.Drawing.Point(731, 431);
+            this.simpleButton1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.simpleButton1.Appearance.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.simpleButton1.Appearance.Options.UseBackColor = true;
+            this.simpleButton1.Appearance.Options.UseFont = true;
+            this.simpleButton1.Location = new System.Drawing.Point(731, 422);
             this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(104, 22);
+            this.simpleButton1.Size = new System.Drawing.Size(104, 31);
             this.simpleButton1.StyleController = this.layoutControl1;
             this.simpleButton1.TabIndex = 5;
             this.simpleButton1.Text = "Гравировать";
@@ -110,18 +114,21 @@
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.simpleButton1;
-            this.layoutControlItem2.Location = new System.Drawing.Point(719, 419);
+            this.layoutControlItem2.Location = new System.Drawing.Point(719, 410);
+            this.layoutControlItem2.MaxSize = new System.Drawing.Size(0, 35);
+            this.layoutControlItem2.MinSize = new System.Drawing.Size(77, 35);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(108, 26);
+            this.layoutControlItem2.Size = new System.Drawing.Size(108, 35);
+            this.layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 419);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 410);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(719, 26);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(719, 35);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // Preview

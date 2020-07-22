@@ -20,6 +20,8 @@ namespace LaserMark
     {
         #region Fields
 
+        Preview preview;
+
         RadWaitingBar waitingBar;
 
         private string filesPath = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName) + @"\files\";
@@ -131,13 +133,17 @@ namespace LaserMark
             this.Upload(UploadType.Ezd);
         }
 
-        private void deleteBtn_Click(object sender, EventArgs e)
+        private void DeleteBtn_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(this.loginTextEdit.Text) && !string.IsNullOrEmpty(this.passwordTextEdit.Text)
-                && !string.IsNullOrEmpty(this.urlTextEdit.Text))
+            if (CurrentEzd.BgPictureEdit != null || CurrentEzd.EzdPictureEdit != null)
             {
-                if (CurrentEzd.BgPictureEdit != null && CurrentEzd.EzdPictureEdit != null)
+                if (XtraMessageBox.Show("Вы действительно хотите удалить?", "Сообщения", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
+                    if (this.preview != null)
+                    {
+                        this.preview.Close();
+                    }
+
                     if (currentPEindex < 10)
                     {
                         var selectedImage = this.layoutControl1.Controls.OfType<PictureEdit>()
@@ -147,13 +153,6 @@ namespace LaserMark
 
                         if (selectedImage.Tag.ToString() == @"filled")
                         {
-                            this.backgroundCustomPictureEdit.Image = null;
-                            this.backgroundCustomPictureEdit.Properties.NullText = " ";
-
-                            this.foregroundCustomPictureEdit.Image = null;
-                            this.foregroundCustomPictureEdit.Properties.NullText = " ";
-
-
                             this.bgImageLbl.Text = " ";
                             this.ezdFileLbl.Text = " ";
 
@@ -162,24 +161,26 @@ namespace LaserMark
                             selectedImage.Properties.ReadOnly = false;
                             selectedImage.Tag = "next";
 
+                            this.backgroundCustomPictureEdit.Image = null;
+                            this.backgroundCustomPictureEdit.Properties.NullText = " ";
+
+                            this.foregroundCustomPictureEdit.Image = null;
+                            this.foregroundCustomPictureEdit.Properties.NullText = " ";
+
                             DeleteFileIfUpdated();
 
                             UserDataRepository.DeleteByTabIndex(currentPEindex);
                         }
                     }
                 }
-                else
-                {
-                    XtraMessageBox.Show("Выберите обложку или ezd файл", "Error", MessageBoxButtons.OK);
-                }
             }
             else
             {
-                XtraMessageBox.Show("Пожалуйста войдите в систему", "Error", MessageBoxButtons.OK);
+                XtraMessageBox.Show("Что удалить?", "Предупреждение", MessageBoxButtons.OK);
             }
         }
 
-        private void saveBtn_Click(object sender, EventArgs e)
+        private void SaveBtn_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(this.loginTextEdit.Text) && !string.IsNullOrEmpty(this.passwordTextEdit.Text)
                 && !string.IsNullOrEmpty(this.urlTextEdit.Text))
@@ -219,6 +220,19 @@ namespace LaserMark
                         DeleteFileIfUpdated();
 
                         SaveImageDB();
+
+                        if (this.preview != null)
+                        {
+                            this.preview.Close();
+                        }
+
+                        // Initial preview
+                        this.foregroundCustomPictureEdit.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+                        this.preview = new Preview(PictureControl.Images.PanelToImage(this.panelControl1));
+                        this.foregroundCustomPictureEdit.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Default;
+                        this.preview.StartPosition = FormStartPosition.Manual;
+
+                        this.preview.Show();
                     }
                 }
                 else
@@ -244,6 +258,13 @@ namespace LaserMark
                 CurrentEzd.BgPictureEdit = this.backgroundCustomPictureEdit;
 
                 CurrentEzd.EzdPictureEdit = this.foregroundCustomPictureEdit;
+
+                // Initial preview
+                this.preview = new Preview(PictureControl.Images.PanelToImage(this.panelControl1));
+
+                this.preview.StartPosition = FormStartPosition.Manual;
+
+                this.preview.Show();
             }
 
             CurrentUIData.RightLayoutControl = this.rightPanelControl;
