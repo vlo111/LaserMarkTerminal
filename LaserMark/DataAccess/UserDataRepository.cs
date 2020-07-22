@@ -171,5 +171,19 @@ VALUES ('{user.Token}'
 
             return (byte)ifExist;
         }
+
+        public static void DeleteByTabIndex(long index)
+        {
+            using (var connection = new SQLiteConnection(connectionStringBuilder.ConnectionString))
+            {
+                connection.Open();
+
+                var command = connection.CreateCommand();
+
+                command.CommandText = $@"DELETE FROM [UserData] WHERE Sequence = {index}";
+
+                command.ExecuteNonQuery();
+            }
+        }
     }
 }

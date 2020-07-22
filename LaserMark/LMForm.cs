@@ -133,7 +133,50 @@ namespace LaserMark
 
         private void deleteBtn_Click(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(this.loginTextEdit.Text) && !string.IsNullOrEmpty(this.passwordTextEdit.Text)
+                && !string.IsNullOrEmpty(this.urlTextEdit.Text))
+            {
+                if (CurrentEzd.BgPictureEdit != null && CurrentEzd.EzdPictureEdit != null)
+                {
+                    if (currentPEindex < 10)
+                    {
+                        var selectedImage = this.layoutControl1.Controls.OfType<PictureEdit>()
+                            .Where(c => c.TabIndex == currentPEindex + 40)
+                            .Select(c => c)
+                            .First();
 
+                        if (selectedImage.Tag.ToString() == @"filled")
+                        {
+                            this.backgroundCustomPictureEdit.Image = null;
+                            this.backgroundCustomPictureEdit.Properties.NullText = " ";
+
+                            this.foregroundCustomPictureEdit.Image = null;
+                            this.foregroundCustomPictureEdit.Properties.NullText = " ";
+
+
+                            this.bgImageLbl.Text = " ";
+                            this.ezdFileLbl.Text = " ";
+
+                            selectedImage.Image = Image.FromFile($@"{iconsPath}plus.png");
+                            selectedImage.Cursor = Cursors.Hand;
+                            selectedImage.Properties.ReadOnly = false;
+                            selectedImage.Tag = "next";
+
+                            DeleteFileIfUpdated();
+
+                            UserDataRepository.DeleteByTabIndex(currentPEindex);
+                        }
+                    }
+                }
+                else
+                {
+                    XtraMessageBox.Show("Выберите обложку или ezd файл", "Error", MessageBoxButtons.OK);
+                }
+            }
+            else
+            {
+                XtraMessageBox.Show("Пожалуйста войдите в систему", "Error", MessageBoxButtons.OK);
+            }
         }
 
         private void saveBtn_Click(object sender, EventArgs e)
@@ -154,6 +197,7 @@ namespace LaserMark
                         selectedImage.Image = Images.PanelToImage(this.panelControl1);
                         selectedImage.Cursor = Cursors.Hand;
                         selectedImage.Properties.ReadOnly = false;
+                        selectedImage.Tag = "filled";
 
                         if (currentPEindex < 9)
                         {
@@ -168,24 +212,18 @@ namespace LaserMark
                                 selectedNextImage.Image = Image.FromFile($@"{iconsPath}plus.png");
                                 selectedNextImage.Cursor = Cursors.Hand;
                                 selectedNextImage.Properties.ReadOnly = false;
+                                selectedNextImage.Tag = "next";
                             }
                         }
-
-
-                        // var userData = UserDataRepository.GetByTabIndex(currentPEindex);
 
                         DeleteFileIfUpdated();
 
                         SaveImageDB();
                     }
-                    else
-                    {
-                        XtraMessageBox.Show("Сохранение настроек заполнен, выберите какой нибудь раздел для изменение", "Error", MessageBoxButtons.OK);
-                    }
                 }
                 else
                 {
-                    XtraMessageBox.Show("Выберите обложку или esd файл", "Error", MessageBoxButtons.OK);
+                    XtraMessageBox.Show("Выберите обложку или ezd файл", "Error", MessageBoxButtons.OK);
                 }
             }
             else
@@ -268,7 +306,7 @@ namespace LaserMark
                         image.Image = Image.FromFile($@"{filesPath}{userDataDtos[i].FullImage}");
                         image.Properties.ReadOnly = false;
                         image.Cursor = Cursors.Hand;
-
+                        image.Tag = @"filled";
                         currentPEindex = i;
                         if (i + 1 == userDataDtos.Count)
                         {
@@ -281,6 +319,7 @@ namespace LaserMark
                             lastImage.Image = Image.FromFile($@"{iconsPath}plus.png");
                             lastImage.Cursor = Cursors.Hand;
                             lastImage.Properties.ReadOnly = false;
+                            lastImage.Tag = @"next";
                         }
                     }
 
@@ -311,16 +350,21 @@ namespace LaserMark
             this.backgroundCustomPictureEdit.Image = bg_image;
             this.backgroundCustomPictureEdit.Width = bg_image.Width;
             this.backgroundCustomPictureEdit.Height = bg_image.Height;
+            this.backgroundCustomPictureEdit.Properties.NullText = currentData.BgImage;
             this.backgroundCustomPictureEdit.Location = new Point((int)currentData.BgImagePosX, (int)currentData.BgImagePosY);
+
+            CurrentEzd.BgPictureEdit = this.backgroundCustomPictureEdit;
 
             var fgImg = EzdDataControl.ReopositoryEzdFile.LoadImage($@"{filesPath}{currentData.EzdImage}",
                                 this.foregroundCustomPictureEdit.Width,
                                 this.foregroundCustomPictureEdit.Height);
             this.foregroundCustomPictureEdit.Image = fgImg;
+            this.foregroundCustomPictureEdit.Properties.NullText = currentData.EzdImage;
             this.foregroundCustomPictureEdit.Width = fgImg.Width;
             this.foregroundCustomPictureEdit.Height = fgImg.Height;
             this.foregroundCustomPictureEdit.Location = new Point((int)currentData.EzdImagePosX, (int)currentData.EzdImagePosY);
 
+            CurrentEzd.EzdPictureEdit = this.foregroundCustomPictureEdit;
         }
 
         private void Upload(UploadType type)
@@ -399,7 +443,7 @@ namespace LaserMark
                 {
                     if (File.Exists($@"{filesPath}{userData.BgImage}"))
                     {
-                        if (userData.EzdImage != this.foregroundCustomPictureEdit.Properties.NullText)
+                        if (userData.BgImage != this.backgroundCustomPictureEdit.Properties.NullText)
                         {
                             File.Delete($@"{filesPath}{userData.BgImage}");
                         }

@@ -16,6 +16,14 @@ namespace EzdDataControl
             Reduce,
             Zoom
         }
+        public static void LoadImage(string fileName)
+        {
+            JczLmc.ClearLibAllEntity();
+
+            // load ezd
+            JczLmc.LoadEzdFile(fileName);
+        }
+
         public static List<Tuple<string, StringBuilder>> GetEzdData()
         {
             var count = JczLmc.GetEntityCount();

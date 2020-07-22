@@ -710,7 +710,7 @@
             this.pictureEdit1.Size = new System.Drawing.Size(36, 36);
             this.pictureEdit1.StyleController = this.layoutControl1;
             this.pictureEdit1.TabIndex = 40;
-            this.pictureEdit1.Tag = "1";
+            this.pictureEdit1.Tag = "";
             this.pictureEdit1.Visible = false;
             this.pictureEdit1.Click += new System.EventHandler(this.PictureEdit_Click);
             // 

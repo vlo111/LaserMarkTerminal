@@ -13,6 +13,7 @@ using Newtonsoft.Json;
 using Api;
 using EzdDataControl;
 using LaserMark.State;
+using System.IO;
 
 namespace LaserMark
 {
@@ -71,6 +72,10 @@ namespace LaserMark
                   $@"http://openeventor.ru/api/event/{CurrentApiData.Token}/get_competitor/bib/{this.searchTextEdit.Text}");
 
                 this._competitor = JsonConvert.DeserializeObject<Competitor>(task);
+
+                string filesPath = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName) + @"\files\";
+                
+                ReopositoryEzdFile.LoadImage($@"{filesPath}{this._currentEzd.Properties.NullText}");
 
                 this._currentEzd.Image = ReopositoryEzdFile.UpdateEzdApi(_competitor.CompetitorData, this._currentEzd.Width, this._currentEzd.Height);
             }
