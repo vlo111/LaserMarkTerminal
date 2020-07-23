@@ -323,5 +323,10 @@ namespace LaserMark
         {
             int nErr = JczLmc.Mark(false);
         }
+
+        private void TestBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

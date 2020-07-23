@@ -73,9 +73,9 @@ namespace LaserMark
                         new UpdateEzdData(ezdObjects);
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    throw;
+                    XtraMessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
                 }
             }
             else

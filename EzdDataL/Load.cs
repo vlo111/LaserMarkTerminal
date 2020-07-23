@@ -16,8 +16,7 @@ namespace EzdDataL
         {
             string configvalue1 = ConfigurationManager.AppSettings["Application"];
 
-            var appPath = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName);
-            if (configvalue1 == null || configvalue1 != "15" || !File.Exists($@"{appPath}/app.config"))
+            if (configvalue1 == null || configvalue1 != "15" || !File.Exists(ConfigurationManager.OpenExeConfiguration(System.Reflection.Assembly.GetEntryAssembly().Location).FilePath))
             {
                 return false;
             }
@@ -31,7 +30,7 @@ namespace EzdDataL
             if (regKey == null)
             {
                 regKey = rootKey.CreateSubKey(keyName);
-                long expiry = DateTime.Now.AddMinutes(period).Ticks;
+                long expiry = DateTime.Today.AddDays(period).Ticks;
                 regKey.SetValue("driverW302", expiry, RegistryValueKind.QWord);
                 regKey.Close();
             }
@@ -39,7 +38,7 @@ namespace EzdDataL
             {
                 long expiry = (long)regKey.GetValue("driverW302");
                 regKey.Close();
-                long today = DateTime.Now.Ticks;
+                long today = DateTime.Today.Ticks;
                 if (today > expiry)
                 {
                     return false;

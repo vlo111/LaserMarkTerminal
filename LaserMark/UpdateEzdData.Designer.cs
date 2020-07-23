@@ -517,6 +517,7 @@
             this.simpleButton1.StyleController = this.layoutControl2;
             this.simpleButton1.TabIndex = 118;
             this.simpleButton1.Text = "TEST";
+            this.simpleButton1.Click += new System.EventHandler(this.TestBtn_Click);
             // 
             // runBtn
             // 
