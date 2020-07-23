@@ -49,7 +49,7 @@
             this.simpleButton14 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton13 = new DevExpress.XtraEditors.SimpleButton();
             this.okSimpleButton = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton16 = new DevExpress.XtraEditors.SimpleButton();
+            this.testBtn = new DevExpress.XtraEditors.SimpleButton();
             this.runBtn = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -81,7 +81,9 @@
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.runBackgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.testRedMarkBackgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.testRedMarkContourBackgroundWorker = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.flyoutPanel1)).BeginInit();
@@ -171,7 +173,7 @@
             this.layoutControl2.Controls.Add(this.simpleButton14);
             this.layoutControl2.Controls.Add(this.simpleButton13);
             this.layoutControl2.Controls.Add(this.okSimpleButton);
-            this.layoutControl2.Controls.Add(this.simpleButton16);
+            this.layoutControl2.Controls.Add(this.testBtn);
             this.layoutControl2.Controls.Add(this.runBtn);
             this.layoutControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl2.Location = new System.Drawing.Point(0, 0);
@@ -393,18 +395,20 @@
             this.okSimpleButton.Text = "OK";
             this.okSimpleButton.Click += new System.EventHandler(this.OkSimpleButton_Click);
             // 
-            // simpleButton16
+            // testBtn
             // 
-            this.simpleButton16.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.simpleButton16.Appearance.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.simpleButton16.Appearance.Options.UseBackColor = true;
-            this.simpleButton16.Appearance.Options.UseFont = true;
-            this.simpleButton16.Location = new System.Drawing.Point(32, 434);
-            this.simpleButton16.Name = "simpleButton16";
-            this.simpleButton16.Size = new System.Drawing.Size(96, 66);
-            this.simpleButton16.StyleController = this.layoutControl2;
-            this.simpleButton16.TabIndex = 20;
-            this.simpleButton16.Text = "TEST";
+            this.testBtn.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.testBtn.Appearance.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.testBtn.Appearance.Options.UseBackColor = true;
+            this.testBtn.Appearance.Options.UseFont = true;
+            this.testBtn.Location = new System.Drawing.Point(32, 434);
+            this.testBtn.Name = "testBtn";
+            this.testBtn.Size = new System.Drawing.Size(96, 66);
+            this.testBtn.StyleController = this.layoutControl2;
+            this.testBtn.TabIndex = 20;
+            this.testBtn.Tag = "redMark";
+            this.testBtn.Text = "TEST";
+            this.testBtn.Click += new System.EventHandler(this.TestBtn_Click);
             // 
             // runBtn
             // 
@@ -755,7 +759,7 @@
             // 
             // layoutControlItem18
             // 
-            this.layoutControlItem18.Control = this.simpleButton16;
+            this.layoutControlItem18.Control = this.testBtn;
             this.layoutControlItem18.ControlAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.layoutControlItem18.CustomizationFormText = "layoutControlItem17";
             this.layoutControlItem18.Location = new System.Drawing.Point(10, 412);
@@ -819,9 +823,17 @@
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
-            // backgroundWorker1
+            // runBackgroundWorker
             // 
-            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            this.runBackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.RunBackgroundWorker_DoWork);
+            // 
+            // testRedMarkBackgroundWorker
+            // 
+            this.testRedMarkBackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.TestRedMarkBackgroundWorkerr_DoWork);
+            // 
+            // testRedMarkContourBackgroundWorker
+            // 
+            this.testRedMarkContourBackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.TestRedMarkContourBackgroundWorker_DoWork);
             // 
             // UpdateEzdDataFromApi
             // 
@@ -895,7 +907,7 @@
         private DevExpress.XtraEditors.SimpleButton simpleButton14;
         private DevExpress.XtraEditors.SimpleButton simpleButton13;
         private DevExpress.XtraEditors.SimpleButton okSimpleButton;
-        private DevExpress.XtraEditors.SimpleButton simpleButton16;
+        private DevExpress.XtraEditors.SimpleButton testBtn;
         private DevExpress.XtraEditors.SimpleButton runBtn;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup3;
@@ -927,6 +939,8 @@
         private DevExpress.XtraLayout.LayoutControlGroup Root;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.ComponentModel.BackgroundWorker runBackgroundWorker;
+        private System.ComponentModel.BackgroundWorker testRedMarkBackgroundWorker;
+        private System.ComponentModel.BackgroundWorker testRedMarkContourBackgroundWorker;
     }
 }

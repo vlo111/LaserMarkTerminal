@@ -96,7 +96,9 @@
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.runBackgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.testRedMarkBackgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.testRedMarkContourBackgroundWorker = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.flyoutPanel1)).BeginInit();
@@ -516,6 +518,7 @@
             this.simpleButton1.Size = new System.Drawing.Size(113, 66);
             this.simpleButton1.StyleController = this.layoutControl2;
             this.simpleButton1.TabIndex = 118;
+            this.simpleButton1.Tag = "redMark";
             this.simpleButton1.Text = "TEST";
             this.simpleButton1.Click += new System.EventHandler(this.TestBtn_Click);
             // 
@@ -1062,9 +1065,17 @@
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
-            // backgroundWorker1
+            // runBackgroundWorker
             // 
-            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            this.runBackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.RunBackgroundWorker_DoWork);
+            // 
+            // testRedMarkBackgroundWorker
+            // 
+            this.testRedMarkBackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.TestRedMarkBackgroundWorkerr_DoWork);
+            // 
+            // testRedMarkContourBackgroundWorker
+            // 
+            this.testRedMarkContourBackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.TestRedMarkContourBackgroundWorker_DoWork);
             // 
             // UpdateEzdData
             // 
@@ -1202,6 +1213,8 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.ComponentModel.BackgroundWorker runBackgroundWorker;
+        private System.ComponentModel.BackgroundWorker testRedMarkBackgroundWorker;
+        private System.ComponentModel.BackgroundWorker testRedMarkContourBackgroundWorker;
     }
 }

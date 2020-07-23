@@ -11,11 +11,32 @@ namespace EzdDataControl
 {
     public class ReopositoryEzdFile
     {
+        public static void Mark()
+        {
+            int nErr = JczLmc.Mark(false);
+        }
+
+        public static void StopMark()
+        {
+            int nErr = JczLmc.StopMark();
+        }
+
+        public static void RedMarkContour()
+        {
+            int nErr = JczLmc.RedMarkContour();
+        }
+
+        public static void RedMark()
+        {
+            int nErr = JczLmc.RedMark();
+        }
+
         public enum ModeFontSize
         {
             Reduce,
             Zoom
         }
+
         public static void LoadImage(string fileName)
         {
             JczLmc.ClearLibAllEntity();

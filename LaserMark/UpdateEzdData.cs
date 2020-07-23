@@ -9,6 +9,8 @@ using System.Windows.Forms;
 using EzdDataControl;
 using LaserMark.State;
 using System.Threading.Tasks;
+using System.ComponentModel;
+using System.Threading;
 
 namespace LaserMark
 {
@@ -298,35 +300,117 @@ namespace LaserMark
         {
             var btn = (SimpleButton)sender;
 
-            if (btn.Name == "Гравировать")
+            if (btn.Name == "RUN")
             {
-                if (!backgroundWorker1.IsBusy)
+                if (XtraMessageBox.Show("Вы действительно хотите гравировать?", "Сообщения", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    backgroundWorker1.RunWorkerAsync();
-                    btn.Name = "Стоп";
-                    btn.BackColor = Color.FromArgb(192, 0, 0);
-                }
-                else
-                {
-                    XtraMessageBox.Show("后台线程工作中", "Information", MessageBoxButtons.OK);
+                    if (!runBackgroundWorker.IsBusy)
+                    {
+                        runBackgroundWorker.RunWorkerAsync();
+                        btn.Name = "STOP";
+                        btn.BackColor = Color.FromArgb(192, 0, 0);
+                    }
+                    else
+                    {
+                        XtraMessageBox.Show("Гравировка уже идет", "Information", MessageBoxButtons.OK);
+                    }
                 }
             }
             else
             {
-                int nErr = JczLmc.StopMark();
-                btn.Name = "Гравировать";
+                ReopositoryEzdFile.StopMark();
+                btn.Name = "RUN";
                 btn.BackColor = Color.FromArgb(0, 192, 192);
             }
         }
 
-        private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        private void RunBackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            int nErr = JczLmc.Mark(false);
+            ReopositoryEzdFile.Mark();
         }
 
         private void TestBtn_Click(object sender, EventArgs e)
         {
+            var btn = (SimpleButton)sender;
+            try
+            {
+                if (JczLmc.IsMarking())
+                {
+                    if (XtraMessageBox.Show("Вы действительно хотите простановить гравировку?", "Сообщения", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        int nErr = JczLmc.StopMark();
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
 
+                if (btn.Text == "TEST")
+                {
+                    if (btn.Tag.ToString() == "redMark")
+                    {
+                        if (!testRedMarkBackgroundWorker.IsBusy)
+                        {
+                            testRedMarkBackgroundWorker.RunWorkerAsync();
+                        }
+
+                        btn.Tag = "redMarkContour";
+                    }
+                    else if (btn.Tag.ToString() == "redMarkContour")
+                    {
+                        if (!testRedMarkContourBackgroundWorker.IsBusy)
+                        {
+                            testRedMarkContourBackgroundWorker.RunWorkerAsync();
+                        }
+
+                        btn.Tag = "redMark";
+                    }
+
+                    btn.BackColor = btn.BackColor = Color.FromArgb(192, 0, 0);
+                    btn.Text = "STOP TEST";
+                }
+                else if (btn.Text == "STOP TEST")
+                {
+                    if (btn.Tag.ToString() == "redMark")
+                    {
+                        testRedMarkBackgroundWorker.CancelAsync();
+
+                        btn.Tag = "redMarkContour";
+                    }
+                    else if (btn.Tag.ToString() == "redMarkContour")
+                    {
+                        testRedMarkContourBackgroundWorker.CancelAsync();
+
+                        btn.Tag = "redMark";
+                    }
+                    btn.BackColor = Color.FromArgb(0, 192, 192);
+                    btn.Text = "TEST";
+                }
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show(ex.Message, "Information", MessageBoxButtons.OK);
+            }
         }
+
+        private void TestRedMarkBackgroundWorkerr_DoWork(object sender, DoWorkEventArgs e)
+        {
+            while (true)
+            {
+                Thread.Sleep(400);
+                ReopositoryEzdFile.RedMark();
+            }
+        }
+
+        private void TestRedMarkContourBackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            while (true)
+            {
+                Thread.Sleep(400);
+                ReopositoryEzdFile.RedMarkContour();
+            }
+        }
+
     }
 }
