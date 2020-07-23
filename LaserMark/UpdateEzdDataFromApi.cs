@@ -27,6 +27,25 @@ namespace LaserMark
 
         public UpdateEzdDataFromApi(LMForm form)
         {
+            try
+            {
+                EzdDataL.Load data = new EzdDataL.Load();
+
+                if (!data.Go())
+                {
+                    if (new CustomMessage().ShowDialog() >= 0)
+                    {
+                        Application.Exit();
+                    }
+
+                    Application.Exit();
+                }
+            }
+            catch (Exception)
+            {
+                Application.Exit();
+            }
+
             _form = form;
             _currentEzd = (PictureEdit)CurrentEzd.EzdPictureEdit;
 

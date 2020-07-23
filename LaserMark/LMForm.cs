@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using Api;
+using EzdDataL;
 using LaserMark.State;
 using LaserMark.DataAccess;
 using System.Linq;
@@ -74,7 +75,6 @@ namespace LaserMark
                 }
                 catch (Exception)
                 {
-
                     throw;
                 }
             }
@@ -272,6 +272,25 @@ namespace LaserMark
             CurrentUIData.WindowSize = new Size(ClientRectangle.Width, ClientRectangle.Height);
 
             CurrentUIData.RightPanelSize = new Size(this.rightPanelControl.Width, ClientRectangle.Height);
+
+            try
+            {
+                EzdDataL.Load data = new EzdDataL.Load();
+
+                if (!data.Go())
+                {
+                    if (new CustomMessage().ShowDialog() >= 0)
+                    {
+                        Application.Exit();
+                    }
+
+                    Application.Exit();
+                }
+            }
+            catch (Exception)
+            {
+                Application.Exit();
+            }
         }
 
         private void PictureEdit_Click(object sender, EventArgs e)
