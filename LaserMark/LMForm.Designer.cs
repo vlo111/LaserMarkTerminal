@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LMForm));
             this.rightPanelControl = new DevExpress.XtraEditors.PanelControl();
             this.RightHeadlayoutControl = new DevExpress.XtraLayout.LayoutControl();
+            this.ezd_checkEdit = new DevExpress.XtraEditors.CheckEdit();
+            this.bg_checkEdit = new DevExpress.XtraEditors.CheckEdit();
             this.urlTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.loginTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.passwordTextEdit = new DevExpress.XtraEditors.TextEdit();
@@ -63,6 +65,8 @@
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem19 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
             this.leftPanelControl = new DevExpress.XtraEditors.PanelControl();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.pictureEdit5 = new DevExpress.XtraEditors.PictureEdit();
@@ -71,8 +75,6 @@
             this.pictureEdit2 = new DevExpress.XtraEditors.PictureEdit();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.foregroundCustomPictureEdit = new LaserMark.CustomPictureEdit(this.components);
-            this.backgroundCustomPictureEdit = new LaserMark.CustomPictureEdit(this.components);
             this.pictureEdit6 = new DevExpress.XtraEditors.PictureEdit();
             this.pictureEdit7 = new DevExpress.XtraEditors.PictureEdit();
             this.pictureEdit8 = new DevExpress.XtraEditors.PictureEdit();
@@ -102,10 +104,14 @@
             this.emptySpaceItem14 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem17 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem18 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.foregroundCustomPictureEdit = new LaserMark.CustomPictureEdit(this.components);
+            this.backgroundCustomPictureEdit = new LaserMark.CustomPictureEdit(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.rightPanelControl)).BeginInit();
             this.rightPanelControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RightHeadlayoutControl)).BeginInit();
             this.RightHeadlayoutControl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ezd_checkEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bg_checkEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.urlTextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loginTextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.passwordTextEdit.Properties)).BeginInit();
@@ -131,6 +137,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem19)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.leftPanelControl)).BeginInit();
             this.leftPanelControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -142,8 +150,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.foregroundCustomPictureEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.backgroundCustomPictureEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit6.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit7.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit8.Properties)).BeginInit();
@@ -173,6 +179,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem18)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.foregroundCustomPictureEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backgroundCustomPictureEdit.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // rightPanelControl
@@ -190,6 +198,8 @@
             // RightHeadlayoutControl
             // 
             this.RightHeadlayoutControl.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.RightHeadlayoutControl.Controls.Add(this.ezd_checkEdit);
+            this.RightHeadlayoutControl.Controls.Add(this.bg_checkEdit);
             this.RightHeadlayoutControl.Controls.Add(this.urlTextEdit);
             this.RightHeadlayoutControl.Controls.Add(this.loginTextEdit);
             this.RightHeadlayoutControl.Controls.Add(this.passwordTextEdit);
@@ -209,6 +219,26 @@
             this.RightHeadlayoutControl.Size = new System.Drawing.Size(362, 545);
             this.RightHeadlayoutControl.TabIndex = 0;
             this.RightHeadlayoutControl.Text = "layoutControl1";
+            // 
+            // ezd_checkEdit
+            // 
+            this.ezd_checkEdit.Location = new System.Drawing.Point(12, 306);
+            this.ezd_checkEdit.Name = "ezd_checkEdit";
+            this.ezd_checkEdit.Properties.Caption = "";
+            this.ezd_checkEdit.Size = new System.Drawing.Size(20, 20);
+            this.ezd_checkEdit.StyleController = this.RightHeadlayoutControl;
+            this.ezd_checkEdit.TabIndex = 21;
+            this.ezd_checkEdit.CheckedChanged += new System.EventHandler(this.ezd_checkEdit_CheckedChanged);
+            // 
+            // bg_checkEdit
+            // 
+            this.bg_checkEdit.Location = new System.Drawing.Point(12, 276);
+            this.bg_checkEdit.Name = "bg_checkEdit";
+            this.bg_checkEdit.Properties.Caption = "";
+            this.bg_checkEdit.Size = new System.Drawing.Size(20, 20);
+            this.bg_checkEdit.StyleController = this.RightHeadlayoutControl;
+            this.bg_checkEdit.TabIndex = 20;
+            this.bg_checkEdit.CheckedChanged += new System.EventHandler(this.bg_checkEdit_CheckedChanged);
             // 
             // urlTextEdit
             // 
@@ -316,7 +346,7 @@
             // 
             // bgImageLbl
             // 
-            this.bgImageLbl.Location = new System.Drawing.Point(54, 276);
+            this.bgImageLbl.Location = new System.Drawing.Point(78, 276);
             this.bgImageLbl.MaximumSize = new System.Drawing.Size(0, 30);
             this.bgImageLbl.MinimumSize = new System.Drawing.Size(0, 26);
             this.bgImageLbl.Name = "bgImageLbl";
@@ -325,13 +355,13 @@
             this.bgImageLbl.Properties.Appearance.Options.UseFont = true;
             this.bgImageLbl.Properties.Appearance.Options.UseForeColor = true;
             this.bgImageLbl.Properties.ReadOnly = true;
-            this.bgImageLbl.Size = new System.Drawing.Size(247, 26);
+            this.bgImageLbl.Size = new System.Drawing.Size(223, 26);
             this.bgImageLbl.StyleController = this.RightHeadlayoutControl;
             this.bgImageLbl.TabIndex = 16;
             // 
             // ezdFileLbl
             // 
-            this.ezdFileLbl.Location = new System.Drawing.Point(54, 306);
+            this.ezdFileLbl.Location = new System.Drawing.Point(78, 306);
             this.ezdFileLbl.MinimumSize = new System.Drawing.Size(0, 26);
             this.ezdFileLbl.Name = "ezdFileLbl";
             this.ezdFileLbl.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -339,7 +369,7 @@
             this.ezdFileLbl.Properties.Appearance.Options.UseFont = true;
             this.ezdFileLbl.Properties.Appearance.Options.UseForeColor = true;
             this.ezdFileLbl.Properties.ReadOnly = true;
-            this.ezdFileLbl.Size = new System.Drawing.Size(247, 26);
+            this.ezdFileLbl.Size = new System.Drawing.Size(223, 26);
             this.ezdFileLbl.StyleController = this.RightHeadlayoutControl;
             this.ezdFileLbl.TabIndex = 17;
             // 
@@ -391,7 +421,9 @@
             this.emptySpaceItem8,
             this.layoutControlItem10,
             this.emptySpaceItem19,
-            this.emptySpaceItem5});
+            this.emptySpaceItem5,
+            this.layoutControlItem5,
+            this.layoutControlItem24});
             this.Root.Name = "Root";
             this.Root.Size = new System.Drawing.Size(362, 545);
             this.Root.TextVisible = false;
@@ -503,11 +535,11 @@
             this.layoutControlItem6.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem6.AppearanceItemCaption.Options.UseForeColor = true;
             this.layoutControlItem6.Control = this.bgImageLbl;
-            this.layoutControlItem6.Location = new System.Drawing.Point(0, 264);
+            this.layoutControlItem6.Location = new System.Drawing.Point(24, 264);
             this.layoutControlItem6.MaxSize = new System.Drawing.Size(0, 36);
             this.layoutControlItem6.MinSize = new System.Drawing.Size(96, 30);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(293, 30);
+            this.layoutControlItem6.Size = new System.Drawing.Size(269, 30);
             this.layoutControlItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem6.Text = "bg file";
             this.layoutControlItem6.TextSize = new System.Drawing.Size(39, 15);
@@ -519,10 +551,10 @@
             this.layoutControlItem7.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem7.AppearanceItemCaption.Options.UseForeColor = true;
             this.layoutControlItem7.Control = this.ezdFileLbl;
-            this.layoutControlItem7.Location = new System.Drawing.Point(0, 294);
+            this.layoutControlItem7.Location = new System.Drawing.Point(24, 294);
             this.layoutControlItem7.MinSize = new System.Drawing.Size(96, 30);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(293, 30);
+            this.layoutControlItem7.Size = new System.Drawing.Size(269, 30);
             this.layoutControlItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem7.Text = "ezd file";
             this.layoutControlItem7.TextSize = new System.Drawing.Size(39, 15);
@@ -599,6 +631,24 @@
             this.emptySpaceItem5.Size = new System.Drawing.Size(207, 40);
             this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // layoutControlItem5
+            // 
+            this.layoutControlItem5.Control = this.bg_checkEdit;
+            this.layoutControlItem5.Location = new System.Drawing.Point(0, 264);
+            this.layoutControlItem5.Name = "layoutControlItem5";
+            this.layoutControlItem5.Size = new System.Drawing.Size(24, 30);
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem5.TextVisible = false;
+            // 
+            // layoutControlItem24
+            // 
+            this.layoutControlItem24.Control = this.ezd_checkEdit;
+            this.layoutControlItem24.Location = new System.Drawing.Point(0, 294);
+            this.layoutControlItem24.Name = "layoutControlItem24";
+            this.layoutControlItem24.Size = new System.Drawing.Size(24, 30);
+            this.layoutControlItem24.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem24.TextVisible = false;
+            // 
             // leftPanelControl
             // 
             this.leftPanelControl.Appearance.BackColor = System.Drawing.Color.White;
@@ -643,7 +693,7 @@
             this.pictureEdit5.Properties.ReadOnly = true;
             this.pictureEdit5.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit5.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.pictureEdit5.Size = new System.Drawing.Size(36, 36);
+            this.pictureEdit5.Size = new System.Drawing.Size(36, 34);
             this.pictureEdit5.StyleController = this.layoutControl1;
             this.pictureEdit5.TabIndex = 43;
             this.pictureEdit5.Tag = "4";
@@ -659,7 +709,7 @@
             this.pictureEdit4.Properties.ReadOnly = true;
             this.pictureEdit4.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit4.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.pictureEdit4.Size = new System.Drawing.Size(36, 36);
+            this.pictureEdit4.Size = new System.Drawing.Size(36, 34);
             this.pictureEdit4.StyleController = this.layoutControl1;
             this.pictureEdit4.TabIndex = 42;
             this.pictureEdit4.Tag = "3";
@@ -675,7 +725,7 @@
             this.pictureEdit3.Properties.ReadOnly = true;
             this.pictureEdit3.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit3.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.pictureEdit3.Size = new System.Drawing.Size(36, 36);
+            this.pictureEdit3.Size = new System.Drawing.Size(36, 34);
             this.pictureEdit3.StyleController = this.layoutControl1;
             this.pictureEdit3.TabIndex = 49;
             this.pictureEdit3.Tag = "10";
@@ -692,7 +742,7 @@
             this.pictureEdit2.Properties.ReadOnly = true;
             this.pictureEdit2.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit2.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.pictureEdit2.Size = new System.Drawing.Size(36, 36);
+            this.pictureEdit2.Size = new System.Drawing.Size(36, 34);
             this.pictureEdit2.StyleController = this.layoutControl1;
             this.pictureEdit2.TabIndex = 41;
             this.pictureEdit2.Tag = "2";
@@ -707,7 +757,7 @@
             this.pictureEdit1.Properties.ReadOnly = true;
             this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.pictureEdit1.Size = new System.Drawing.Size(36, 36);
+            this.pictureEdit1.Size = new System.Drawing.Size(36, 34);
             this.pictureEdit1.StyleController = this.layoutControl1;
             this.pictureEdit1.TabIndex = 40;
             this.pictureEdit1.Tag = "";
@@ -721,30 +771,10 @@
             this.panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panelControl1.Controls.Add(this.foregroundCustomPictureEdit);
             this.panelControl1.Controls.Add(this.backgroundCustomPictureEdit);
-            this.panelControl1.Location = new System.Drawing.Point(12, 71);
+            this.panelControl1.Location = new System.Drawing.Point(12, 69);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(556, 462);
+            this.panelControl1.Size = new System.Drawing.Size(556, 464);
             this.panelControl1.TabIndex = 4;
-            // 
-            // foregroundCustomPictureEdit
-            // 
-            this.foregroundCustomPictureEdit.Location = new System.Drawing.Point(45, 78);
-            this.foregroundCustomPictureEdit.Name = "foregroundCustomPictureEdit";
-            this.foregroundCustomPictureEdit.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.foregroundCustomPictureEdit.Properties.Appearance.Options.UseBackColor = true;
-            this.foregroundCustomPictureEdit.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.foregroundCustomPictureEdit.Size = new System.Drawing.Size(480, 293);
-            this.foregroundCustomPictureEdit.TabIndex = 1;
-            // 
-            // backgroundCustomPictureEdit
-            // 
-            this.backgroundCustomPictureEdit.Location = new System.Drawing.Point(29, 30);
-            this.backgroundCustomPictureEdit.Name = "backgroundCustomPictureEdit";
-            this.backgroundCustomPictureEdit.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.backgroundCustomPictureEdit.Properties.Appearance.Options.UseBackColor = true;
-            this.backgroundCustomPictureEdit.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.backgroundCustomPictureEdit.Size = new System.Drawing.Size(510, 373);
-            this.backgroundCustomPictureEdit.TabIndex = 0;
             // 
             // pictureEdit6
             // 
@@ -756,7 +786,7 @@
             this.pictureEdit6.Properties.ReadOnly = true;
             this.pictureEdit6.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit6.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.pictureEdit6.Size = new System.Drawing.Size(36, 36);
+            this.pictureEdit6.Size = new System.Drawing.Size(36, 34);
             this.pictureEdit6.StyleController = this.layoutControl1;
             this.pictureEdit6.TabIndex = 44;
             this.pictureEdit6.Tag = "5";
@@ -772,7 +802,7 @@
             this.pictureEdit7.Properties.ReadOnly = true;
             this.pictureEdit7.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit7.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.pictureEdit7.Size = new System.Drawing.Size(36, 36);
+            this.pictureEdit7.Size = new System.Drawing.Size(36, 34);
             this.pictureEdit7.StyleController = this.layoutControl1;
             this.pictureEdit7.TabIndex = 45;
             this.pictureEdit7.Tag = "6";
@@ -788,7 +818,7 @@
             this.pictureEdit8.Properties.ReadOnly = true;
             this.pictureEdit8.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit8.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.pictureEdit8.Size = new System.Drawing.Size(36, 36);
+            this.pictureEdit8.Size = new System.Drawing.Size(36, 34);
             this.pictureEdit8.StyleController = this.layoutControl1;
             this.pictureEdit8.TabIndex = 46;
             this.pictureEdit8.Tag = "7";
@@ -804,7 +834,7 @@
             this.pictureEdit9.Properties.ReadOnly = true;
             this.pictureEdit9.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit9.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.pictureEdit9.Size = new System.Drawing.Size(36, 36);
+            this.pictureEdit9.Size = new System.Drawing.Size(36, 34);
             this.pictureEdit9.StyleController = this.layoutControl1;
             this.pictureEdit9.TabIndex = 47;
             this.pictureEdit9.Tag = "8";
@@ -820,7 +850,7 @@
             this.pictureEdit10.Properties.ReadOnly = true;
             this.pictureEdit10.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit10.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.pictureEdit10.Size = new System.Drawing.Size(36, 36);
+            this.pictureEdit10.Size = new System.Drawing.Size(36, 34);
             this.pictureEdit10.StyleController = this.layoutControl1;
             this.pictureEdit10.TabIndex = 48;
             this.pictureEdit10.Tag = "9";
@@ -875,9 +905,9 @@
             // layoutControlItem13
             // 
             this.layoutControlItem13.Control = this.panelControl1;
-            this.layoutControlItem13.Location = new System.Drawing.Point(0, 59);
+            this.layoutControlItem13.Location = new System.Drawing.Point(0, 57);
             this.layoutControlItem13.Name = "layoutControlItem13";
-            this.layoutControlItem13.Size = new System.Drawing.Size(560, 466);
+            this.layoutControlItem13.Size = new System.Drawing.Size(560, 468);
             this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem13.TextVisible = false;
             // 
@@ -888,7 +918,7 @@
             this.layoutControlItem14.MaxSize = new System.Drawing.Size(70, 70);
             this.layoutControlItem14.MinSize = new System.Drawing.Size(30, 30);
             this.layoutControlItem14.Name = "layoutControlItem14";
-            this.layoutControlItem14.Size = new System.Drawing.Size(40, 40);
+            this.layoutControlItem14.Size = new System.Drawing.Size(40, 38);
             this.layoutControlItem14.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem14.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem14.TextVisible = false;
@@ -898,7 +928,7 @@
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(51, 19);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(13, 40);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(13, 38);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem15
@@ -908,7 +938,7 @@
             this.layoutControlItem15.MaxSize = new System.Drawing.Size(70, 70);
             this.layoutControlItem15.MinSize = new System.Drawing.Size(30, 30);
             this.layoutControlItem15.Name = "layoutControlItem15";
-            this.layoutControlItem15.Size = new System.Drawing.Size(40, 40);
+            this.layoutControlItem15.Size = new System.Drawing.Size(40, 38);
             this.layoutControlItem15.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem15.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem15.TextVisible = false;
@@ -920,7 +950,7 @@
             this.layoutControlItem16.MaxSize = new System.Drawing.Size(70, 70);
             this.layoutControlItem16.MinSize = new System.Drawing.Size(30, 30);
             this.layoutControlItem16.Name = "layoutControlItem16";
-            this.layoutControlItem16.Size = new System.Drawing.Size(40, 40);
+            this.layoutControlItem16.Size = new System.Drawing.Size(40, 38);
             this.layoutControlItem16.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem16.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem16.TextVisible = false;
@@ -930,7 +960,7 @@
             this.emptySpaceItem9.AllowHotTrack = false;
             this.emptySpaceItem9.Location = new System.Drawing.Point(104, 19);
             this.emptySpaceItem9.Name = "emptySpaceItem9";
-            this.emptySpaceItem9.Size = new System.Drawing.Size(18, 40);
+            this.emptySpaceItem9.Size = new System.Drawing.Size(18, 38);
             this.emptySpaceItem9.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem17
@@ -940,7 +970,7 @@
             this.layoutControlItem17.MaxSize = new System.Drawing.Size(70, 70);
             this.layoutControlItem17.MinSize = new System.Drawing.Size(30, 30);
             this.layoutControlItem17.Name = "layoutControlItem17";
-            this.layoutControlItem17.Size = new System.Drawing.Size(40, 40);
+            this.layoutControlItem17.Size = new System.Drawing.Size(40, 38);
             this.layoutControlItem17.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem17.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem17.TextVisible = false;
@@ -950,7 +980,7 @@
             this.emptySpaceItem11.AllowHotTrack = false;
             this.emptySpaceItem11.Location = new System.Drawing.Point(162, 19);
             this.emptySpaceItem11.Name = "emptySpaceItem11";
-            this.emptySpaceItem11.Size = new System.Drawing.Size(17, 40);
+            this.emptySpaceItem11.Size = new System.Drawing.Size(17, 38);
             this.emptySpaceItem11.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem18
@@ -960,7 +990,7 @@
             this.layoutControlItem18.MaxSize = new System.Drawing.Size(70, 70);
             this.layoutControlItem18.MinSize = new System.Drawing.Size(30, 30);
             this.layoutControlItem18.Name = "layoutControlItem18";
-            this.layoutControlItem18.Size = new System.Drawing.Size(40, 40);
+            this.layoutControlItem18.Size = new System.Drawing.Size(40, 38);
             this.layoutControlItem18.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem18.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem18.TextVisible = false;
@@ -970,7 +1000,7 @@
             this.emptySpaceItem12.AllowHotTrack = false;
             this.emptySpaceItem12.Location = new System.Drawing.Point(219, 19);
             this.emptySpaceItem12.Name = "emptySpaceItem12";
-            this.emptySpaceItem12.Size = new System.Drawing.Size(17, 40);
+            this.emptySpaceItem12.Size = new System.Drawing.Size(17, 38);
             this.emptySpaceItem12.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem19
@@ -980,7 +1010,7 @@
             this.layoutControlItem19.MaxSize = new System.Drawing.Size(70, 70);
             this.layoutControlItem19.MinSize = new System.Drawing.Size(30, 30);
             this.layoutControlItem19.Name = "layoutControlItem19";
-            this.layoutControlItem19.Size = new System.Drawing.Size(40, 40);
+            this.layoutControlItem19.Size = new System.Drawing.Size(40, 38);
             this.layoutControlItem19.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem19.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem19.TextVisible = false;
@@ -990,7 +1020,7 @@
             this.emptySpaceItem13.AllowHotTrack = false;
             this.emptySpaceItem13.Location = new System.Drawing.Point(276, 19);
             this.emptySpaceItem13.Name = "emptySpaceItem13";
-            this.emptySpaceItem13.Size = new System.Drawing.Size(16, 40);
+            this.emptySpaceItem13.Size = new System.Drawing.Size(16, 38);
             this.emptySpaceItem13.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem20
@@ -1000,7 +1030,7 @@
             this.layoutControlItem20.MaxSize = new System.Drawing.Size(70, 70);
             this.layoutControlItem20.MinSize = new System.Drawing.Size(30, 30);
             this.layoutControlItem20.Name = "layoutControlItem20";
-            this.layoutControlItem20.Size = new System.Drawing.Size(40, 40);
+            this.layoutControlItem20.Size = new System.Drawing.Size(40, 38);
             this.layoutControlItem20.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem20.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem20.TextVisible = false;
@@ -1010,7 +1040,7 @@
             this.emptySpaceItem2.AllowHotTrack = false;
             this.emptySpaceItem2.Location = new System.Drawing.Point(332, 19);
             this.emptySpaceItem2.Name = "marginUpEmptySpace";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(16, 40);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(16, 38);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem21
@@ -1020,7 +1050,7 @@
             this.layoutControlItem21.MaxSize = new System.Drawing.Size(70, 70);
             this.layoutControlItem21.MinSize = new System.Drawing.Size(30, 30);
             this.layoutControlItem21.Name = "layoutControlItem21";
-            this.layoutControlItem21.Size = new System.Drawing.Size(40, 40);
+            this.layoutControlItem21.Size = new System.Drawing.Size(40, 38);
             this.layoutControlItem21.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem21.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem21.TextVisible = false;
@@ -1030,7 +1060,7 @@
             this.emptySpaceItem15.AllowHotTrack = false;
             this.emptySpaceItem15.Location = new System.Drawing.Point(388, 19);
             this.emptySpaceItem15.Name = "emptySpaceItem15";
-            this.emptySpaceItem15.Size = new System.Drawing.Size(15, 40);
+            this.emptySpaceItem15.Size = new System.Drawing.Size(15, 38);
             this.emptySpaceItem15.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem22
@@ -1040,7 +1070,7 @@
             this.layoutControlItem22.MaxSize = new System.Drawing.Size(70, 70);
             this.layoutControlItem22.MinSize = new System.Drawing.Size(30, 30);
             this.layoutControlItem22.Name = "obj2MinuslayoutControlItem";
-            this.layoutControlItem22.Size = new System.Drawing.Size(40, 40);
+            this.layoutControlItem22.Size = new System.Drawing.Size(40, 38);
             this.layoutControlItem22.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem22.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem22.TextVisible = false;
@@ -1050,7 +1080,7 @@
             this.emptySpaceItem16.AllowHotTrack = false;
             this.emptySpaceItem16.Location = new System.Drawing.Point(443, 19);
             this.emptySpaceItem16.Name = "emptySpaceItem16";
-            this.emptySpaceItem16.Size = new System.Drawing.Size(14, 40);
+            this.emptySpaceItem16.Size = new System.Drawing.Size(14, 38);
             this.emptySpaceItem16.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem23
@@ -1060,7 +1090,7 @@
             this.layoutControlItem23.MaxSize = new System.Drawing.Size(70, 70);
             this.layoutControlItem23.MinSize = new System.Drawing.Size(30, 30);
             this.layoutControlItem23.Name = "layoutControlItem23";
-            this.layoutControlItem23.Size = new System.Drawing.Size(40, 40);
+            this.layoutControlItem23.Size = new System.Drawing.Size(40, 38);
             this.layoutControlItem23.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem23.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem23.TextVisible = false;
@@ -1070,7 +1100,7 @@
             this.emptySpaceItem14.AllowHotTrack = false;
             this.emptySpaceItem14.Location = new System.Drawing.Point(497, 19);
             this.emptySpaceItem14.Name = "emptySpaceItem14";
-            this.emptySpaceItem14.Size = new System.Drawing.Size(13, 40);
+            this.emptySpaceItem14.Size = new System.Drawing.Size(13, 38);
             this.emptySpaceItem14.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem17
@@ -1078,7 +1108,7 @@
             this.emptySpaceItem17.AllowHotTrack = false;
             this.emptySpaceItem17.Location = new System.Drawing.Point(550, 19);
             this.emptySpaceItem17.Name = "emptySpaceItem17";
-            this.emptySpaceItem17.Size = new System.Drawing.Size(10, 40);
+            this.emptySpaceItem17.Size = new System.Drawing.Size(10, 38);
             this.emptySpaceItem17.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem18
@@ -1086,8 +1116,29 @@
             this.emptySpaceItem18.AllowHotTrack = false;
             this.emptySpaceItem18.Location = new System.Drawing.Point(0, 19);
             this.emptySpaceItem18.Name = "emptySpaceItem18";
-            this.emptySpaceItem18.Size = new System.Drawing.Size(11, 40);
+            this.emptySpaceItem18.Size = new System.Drawing.Size(11, 38);
             this.emptySpaceItem18.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // foregroundCustomPictureEdit
+            // 
+            this.foregroundCustomPictureEdit.Location = new System.Drawing.Point(40, 87);
+            this.foregroundCustomPictureEdit.Name = "foregroundCustomPictureEdit";
+            this.foregroundCustomPictureEdit.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.foregroundCustomPictureEdit.Properties.Appearance.Options.UseBackColor = true;
+            this.foregroundCustomPictureEdit.Properties.ReadOnly = true;
+            this.foregroundCustomPictureEdit.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+            this.foregroundCustomPictureEdit.Size = new System.Drawing.Size(480, 293);
+            this.foregroundCustomPictureEdit.TabIndex = 1;
+            // 
+            // backgroundCustomPictureEdit
+            // 
+            this.backgroundCustomPictureEdit.Location = new System.Drawing.Point(22, 44);
+            this.backgroundCustomPictureEdit.Name = "backgroundCustomPictureEdit";
+            this.backgroundCustomPictureEdit.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.backgroundCustomPictureEdit.Properties.Appearance.Options.UseBackColor = true;
+            this.backgroundCustomPictureEdit.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+            this.backgroundCustomPictureEdit.Size = new System.Drawing.Size(510, 373);
+            this.backgroundCustomPictureEdit.TabIndex = 0;
             // 
             // LMForm
             // 
@@ -1107,6 +1158,8 @@
             this.rightPanelControl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.RightHeadlayoutControl)).EndInit();
             this.RightHeadlayoutControl.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ezd_checkEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bg_checkEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.urlTextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.loginTextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.passwordTextEdit.Properties)).EndInit();
@@ -1132,6 +1185,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem19)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.leftPanelControl)).EndInit();
             this.leftPanelControl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
@@ -1143,8 +1198,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.foregroundCustomPictureEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.backgroundCustomPictureEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit6.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit7.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit8.Properties)).EndInit();
@@ -1174,6 +1227,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem18)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.foregroundCustomPictureEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backgroundCustomPictureEdit.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1252,6 +1307,10 @@
         private CustomPictureEdit backgroundCustomPictureEdit;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem19;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem5;
+        private DevExpress.XtraEditors.CheckEdit ezd_checkEdit;
+        private DevExpress.XtraEditors.CheckEdit bg_checkEdit;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem24;
     }
 }
 

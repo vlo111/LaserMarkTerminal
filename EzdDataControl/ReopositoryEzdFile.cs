@@ -11,9 +11,14 @@ namespace EzdDataControl
 {
     public class ReopositoryEzdFile
     {
-        public static void Mark()
+        public static int Mark()
         {
-            int nErr = JczLmc.Mark(false);
+            return JczLmc.Mark(false);
+        }
+
+        public static bool IsMarking()
+        {
+            return JczLmc.IsMarking();
         }
 
         public static void StopMark()

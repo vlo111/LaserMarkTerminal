@@ -5,6 +5,8 @@
     using System.Windows.Forms;
     class CustomPictureEdit : DevExpress.XtraEditors.PictureEdit
     {
+        public bool controlMoving = true;
+
         public CustomPictureEdit(IContainer container)
         {
             container.Add(this);
@@ -14,19 +16,25 @@
 
         protected override void OnMouseDown(MouseEventArgs e)
         {
-            this.point = e.Location;
-            base.OnMouseDown(e);
+            if (controlMoving)
+            {
+                this.point = e.Location;
+                base.OnMouseDown(e);
+            }
         }
 
         protected override void OnMouseMove(MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
+            if (controlMoving)
             {
-                this.Left += e.X - this.point.X;
-                this.Top += e.Y - this.point.Y;
-            }
+                if (e.Button == MouseButtons.Left)
+                {
+                    this.Left += e.X - this.point.X;
+                    this.Top += e.Y - this.point.Y;
+                }
 
-            base.OnMouseMove(e);
+                base.OnMouseMove(e);
+            }
         }
 
     }

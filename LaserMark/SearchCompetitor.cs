@@ -56,8 +56,13 @@ namespace LaserMark
                         new ColumnHeader() { Text = @"Birth year", Width = 100 }
                     });
 
+            this.MaximumSize = new Size(CurrentUIData.WindowSize.Width, CurrentUIData.WindowSize.Height - (CurrentUIData.WindowSize.Height / 3));
+
             this.Height = CurrentUIData.WindowSize.Height - (CurrentUIData.WindowSize.Height / 3);
-            this.Width = CurrentUIData.WindowSize.Width - (CurrentUIData.WindowSize.Width / 3);
+            this.Width = CurrentUIData.WindowSize.Width;
+
+            this.Left = 0;
+            this.Top = (CurrentUIData.WindowSize.Height - this.Height) / 2;
         }
 
         private async void searchControl1_TextChanged(object sender, EventArgs e)
@@ -143,14 +148,14 @@ namespace LaserMark
 
             this.listView1.Items.AddRange(listItem.ToArray());
 
-            if (this.listView1.Items.Count <= 0)
-            {
-                this.errorLabel.Text = $@"Info: Поиск не дал результатов";
-            }
-            else
-            {
-                this.errorLabel.Text = " ";
-            }
+            //if (this.listView1.Items.Count <= 0)
+            //{
+            //    this.errorLabel.Text = $@"Info: Поиск не дал результатов";
+            //}
+            //else
+            //{
+            //    this.errorLabel.Text = " ";
+            //}
         }
 
         private void KeyBtns_Click(object sender, EventArgs e)

@@ -7,7 +7,6 @@ using System.Text;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using Api;
-using EzdDataL;
 using LaserMark.State;
 using LaserMark.DataAccess;
 using System.Linq;
@@ -25,9 +24,9 @@ namespace LaserMark
 
         RadWaitingBar waitingBar;
 
-        private string filesPath = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName) + @"\files\";
+        private string filesPath = Directory.GetCurrentDirectory() + @"\files\";
 
-        private string iconsPath = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName) + @"\icon\";
+        private string iconsPath = Directory.GetCurrentDirectory() + @"\icon\";
 
         public List<Tuple<string, StringBuilder>> ezdObjects;
 
@@ -48,6 +47,9 @@ namespace LaserMark
         public LMForm()
         {
             InitializeComponent();
+
+            this.backgroundCustomPictureEdit.MouseWheel += CustomPictureEdit_MouseWheel;
+            this.foregroundCustomPictureEdit.MouseWheel += CustomPictureEdit_MouseWheel;
 
             Initial();
         }
@@ -167,8 +169,6 @@ namespace LaserMark
                             this.foregroundCustomPictureEdit.Image = null;
                             this.foregroundCustomPictureEdit.Properties.NullText = " ";
 
-                            DeleteFileIfUpdated();
-
                             UserDataRepository.DeleteByTabIndex(currentPEindex);
                         }
                     }
@@ -217,8 +217,6 @@ namespace LaserMark
                             }
                         }
 
-                        DeleteFileIfUpdated();
-
                         SaveImageDB();
 
                         if (this.preview != null)
@@ -248,10 +246,11 @@ namespace LaserMark
 
         private void LMForm_Load(object sender, EventArgs e)
         {
-            this.rightPanelControl.Width = ClientRectangle.Width / 100 * 25;
+            this.rightPanelControl.Width = SystemInformation.VirtualScreen.Width / 100 * 15;
 
-            // Init forground image parent
+            // Init image parent
             this.foregroundCustomPictureEdit.Parent = this.backgroundCustomPictureEdit;
+            this.backgroundCustomPictureEdit.Parent = this.panelControl1;
 
             if (this.backgroundCustomPictureEdit.Image != null && this.foregroundCustomPictureEdit != null)
             {
@@ -271,7 +270,7 @@ namespace LaserMark
 
             CurrentUIData.WindowSize = new Size(ClientRectangle.Width, ClientRectangle.Height);
 
-            CurrentUIData.RightPanelSize = new Size(this.rightPanelControl.Width, ClientRectangle.Height);
+            CurrentUIData.RightPanelSize = new Size(this.rightPanelControl.Width, SystemInformation.VirtualScreen.Height);
 
             try
             {
@@ -310,6 +309,38 @@ namespace LaserMark
                 else
                 {
                     // delete
+                }
+            }
+        }
+
+        /// <summary>
+        /// Scroll change size
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CustomPictureEdit_MouseWheel(object sender, MouseEventArgs e)
+        {
+            var pictureEdit = (CustomPictureEdit)sender;
+
+            if (pictureEdit.controlMoving)
+            {
+                if (e.Delta > 0)
+                {
+                    if (pictureEdit.Image != null)
+                    {
+                        pictureEdit.Image = Images.Zoom(pictureEdit.Image, new Size(5, 5));
+                    }
+
+                    pictureEdit.Size = pictureEdit.Image.Size;
+                }
+                else
+                {
+                    if (pictureEdit.Image != null)
+                    {
+                        pictureEdit.Image = Images.Scale(pictureEdit.Image, new Size(5, 5));
+                    }
+
+                    pictureEdit.Size = pictureEdit.Image.Size;
                 }
             }
         }
@@ -409,20 +440,19 @@ namespace LaserMark
 
         private void Upload(UploadType type)
         {
-            // take filter type
-            var filter = type == UploadType.Ezd
+            try
+            {
+                // take filter type
+                var filter = type == UploadType.Ezd
                              ? @"EZD file (*.ezd) | *.ezd"
                              : @"Image files (*.jpg, *.jpeg, *.png) | *.jpg; *.jpeg; *.png";
 
-            using (var ofd = new OpenFileDialog { Multiselect = false, ValidateNames = true, Filter = filter })
-            {
-                if (ofd.ShowDialog() == DialogResult.OK)
+                using (var ofd = new OpenFileDialog { Multiselect = false, ValidateNames = true, Filter = filter })
                 {
-
-                    // take BG|FG image from fileName
-                    if (type == UploadType.Ezd)
+                    if (ofd.ShowDialog() == DialogResult.OK)
                     {
-                        try
+                        // take BG|FG image from fileName
+                        if (type == UploadType.Ezd)
                         {
                             var ezdNewName = $@"{DateTime.Now.Ticks}{Path.GetFileName(ofd.FileName)}";
 
@@ -444,64 +474,34 @@ namespace LaserMark
                             CurrentEzd.OriginalEzdPictureEdit = this.foregroundCustomPictureEdit;
 
                             this.ezdFileLbl.Text = Path.GetFileName(ofd.FileName);
+
                         }
-                        catch (Exception ex)
+                        else
                         {
-                            XtraMessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
+                            var img = Image.FromFile(ofd.FileName);
+
+                            var bgImgNewName = $@"{DateTime.Now.Ticks}{Path.GetFileName(ofd.FileName)}";
+
+                            var bgInCurentPath = Path.Combine(filesPath, bgImgNewName);
+
+                            File.Copy(ofd.FileName, bgInCurentPath);
+
+                            this.backgroundCustomPictureEdit.Properties.NullText = bgImgNewName;
+                            this.backgroundCustomPictureEdit.Image = img;
+                            this.backgroundCustomPictureEdit.Width = img.Width;
+                            this.backgroundCustomPictureEdit.Height = img.Height;
+
+                            CurrentEzd.BgPictureEdit = this.backgroundCustomPictureEdit;
+
+                            this.bgImageLbl.Text = Path.GetFileName(ofd.FileName);
                         }
-                    }
-                    else
-                    {
-                        var img = Image.FromFile(ofd.FileName);
-
-                        var bgImgNewName = $@"{DateTime.Now.Ticks}{Path.GetFileName(ofd.FileName)}";
-
-                        var bgInCurentPath = Path.Combine(filesPath, bgImgNewName);
-
-                        File.Copy(ofd.FileName, bgInCurentPath);
-
-                        this.backgroundCustomPictureEdit.Properties.NullText = bgImgNewName;
-                        this.backgroundCustomPictureEdit.Image = img;
-                        this.backgroundCustomPictureEdit.Width = img.Width;
-                        this.backgroundCustomPictureEdit.Height = img.Height;
-
-                        CurrentEzd.BgPictureEdit = this.backgroundCustomPictureEdit;
-
-                        this.bgImageLbl.Text = Path.GetFileName(ofd.FileName);
                     }
                 }
+
             }
-        }
-
-        private void DeleteFileIfUpdated()
-        {
-            if (UserDataRepository.CheckSquence(currentPEindex) > 0)
+            catch (Exception ex)
             {
-                UserDataDto userData = UserDataRepository.GetByTabIndex(currentPEindex);
-
-                if (userData.Token != null)
-                {
-                    if (File.Exists($@"{filesPath}{userData.BgImage}"))
-                    {
-                        if (userData.BgImage != this.backgroundCustomPictureEdit.Properties.NullText)
-                        {
-                            File.Delete($@"{filesPath}{userData.BgImage}");
-                        }
-                    }
-
-                    if (File.Exists($@"{filesPath}{userData.EzdImage}"))
-                    {
-                        if (userData.EzdImage != this.foregroundCustomPictureEdit.Properties.NullText)
-                        {
-                            File.Delete($@"{filesPath}{userData.EzdImage}");
-                        }
-                    }
-
-                    if (File.Exists($@"{filesPath}{userData.FullImage}"))
-                    {
-                        File.Delete($@"{filesPath}{userData.FullImage}");
-                    }
-                }
+                XtraMessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
             }
         }
 
@@ -533,6 +533,38 @@ namespace LaserMark
                 EzdImagePosX = this.foregroundCustomPictureEdit.Location.X,
                 EzdImagePosY = this.foregroundCustomPictureEdit.Location.Y
             });
+        }
+
+        private void bg_checkEdit_CheckedChanged(object sender, EventArgs e)
+        {
+            var check = (CheckEdit)sender;
+
+            if (check.Checked)
+            {
+                this.backgroundCustomPictureEdit.controlMoving = false;
+                this.backgroundCustomPictureEdit.ReadOnly = true;
+            }
+            else
+            {
+                this.backgroundCustomPictureEdit.controlMoving = true;
+                this.backgroundCustomPictureEdit.ReadOnly = false;
+            }
+        }
+
+        private void ezd_checkEdit_CheckedChanged(object sender, EventArgs e)
+        {
+            var check = (CheckEdit)sender;
+
+            if (check.Checked)
+            {
+                this.foregroundCustomPictureEdit.controlMoving = false;
+                this.foregroundCustomPictureEdit.Enabled = false;
+            }
+            else
+            {
+                this.foregroundCustomPictureEdit.controlMoving = true;
+                this.foregroundCustomPictureEdit.Enabled = true;
+            }
         }
     }
 }

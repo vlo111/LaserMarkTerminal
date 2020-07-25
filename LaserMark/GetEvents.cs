@@ -6,6 +6,7 @@ using DevExpress.XtraEditors;
 using Api;
 using Telerik.WinControls.UI;
 using LaserMark.State;
+using System.Drawing;
 
 namespace LaserMark
 {
@@ -74,8 +75,13 @@ namespace LaserMark
 
         private void GetEvents_Load(object sender, EventArgs e)
         {
+            this.MaximumSize = new Size(CurrentUIData.WindowSize.Width, CurrentUIData.WindowSize.Height - (CurrentUIData.WindowSize.Height / 3));
+
             this.Height = CurrentUIData.WindowSize.Height - (CurrentUIData.WindowSize.Height / 3);
-            this.Width = CurrentUIData.WindowSize.Width - (CurrentUIData.WindowSize.Width / 3);
+            this.Width = CurrentUIData.WindowSize.Width;
+
+            this.Left = 0;
+            this.Top = (CurrentUIData.WindowSize.Height - this.Height) / 2;
         }
     }
 }

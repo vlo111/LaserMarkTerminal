@@ -1,38 +1,104 @@
 ﻿using DevExpress.XtraEditors;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.IO;
 
 namespace PictureControl
 {
     public class Images
     {
-        // The Scale. Reduce image size
-        public static Image Scale(Image img, Size size)
+        public static Bitmap ResizeImage(Image image, int width, int height)
         {
-            int width = img.Width - (img.Width * size.Width / 100);
-            int heigth = img.Height - (img.Height * size.Height / 100);
+            var destRect = new Rectangle(0, 0, width, height);
+            var destImage = new Bitmap(width, height);
 
-            Bitmap bmp = new Bitmap(img, width, heigth);
+            destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
 
-            Graphics graphics = Graphics.FromImage(bmp);
+            using (var graphics = Graphics.FromImage(destImage))
+            {
+                graphics.CompositingMode = CompositingMode.SourceCopy;
+                graphics.CompositingQuality = CompositingQuality.HighQuality;
+                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                graphics.SmoothingMode = SmoothingMode.HighQuality;
+                graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
 
-            graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                using (var wrapMode = new ImageAttributes())
+                {
+                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
+                    graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
+                }
+            }
 
-            return bmp;
+            return destImage;
+        }
+        // The Scale. Reduce image size
+        public static Image Scale(Image image, Size size)
+        {
+            int width = image.Width - (image.Width * size.Width / 100);
+            int height = image.Height - (image.Height * size.Height / 100);
+
+            var destRect = new Rectangle(0, 0, width, height);
+            var destImage = new Bitmap(width, height);
+
+            destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
+
+            using (var graphics = Graphics.FromImage(destImage))
+            {
+                graphics.CompositingMode = CompositingMode.SourceCopy;
+                graphics.CompositingQuality = CompositingQuality.HighQuality;
+                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                graphics.SmoothingMode = SmoothingMode.HighQuality;
+                graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+                using (var wrapMode = new ImageAttributes())
+                {
+                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
+                    graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
+                }
+            }
+
+            return destImage;
         }
 
-        public static Image Zoom(Image img, Size size)
+        public static Image Zoom(Image image, Size size)
         {
-            int width = img.Width + (img.Width * size.Width / 100);
-            int heigth = img.Height + (img.Height * size.Height / 100);
+            int width = image.Width + (image.Width * size.Width / 100);
+            int height = image.Height + (image.Height * size.Height / 100);
 
-            Bitmap bmp = new Bitmap(img, width, heigth);
+            var destRect = new Rectangle(0, 0, width, height);
+            var destImage = new Bitmap(width, height);
 
-            Graphics graphics = Graphics.FromImage(bmp);
+            destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
 
-            graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+            using (var graphics = Graphics.FromImage(destImage))
+            {
+                graphics.CompositingMode = CompositingMode.SourceCopy;
+                graphics.CompositingQuality = CompositingQuality.HighQuality;
+                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                graphics.SmoothingMode = SmoothingMode.HighQuality;
+                graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
 
-            return bmp;
+                using (var wrapMode = new ImageAttributes())
+                {
+                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
+                    graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
+                }
+            }
+
+            return destImage;
+
+            //    Bitmap OrgImage = new Bitmap(img);
+            //    Bitmap newImage = new Bitmap(width, heigth);
+
+            //    using (Graphics gr = Graphics.FromImage(newImage))
+            //    {
+            //        gr.InterpolationMode = InterpolationMode.HighQualityBicubic;
+            //        gr.PixelOffsetMode = PixelOffsetMode.HighQuality;
+            //        gr.DrawImage(OrgImage, 0, 0, width, heigth);
+            //    }
+
+            //    return newImage;
         }
 
         public static Bitmap SetImageTransparent(Image image)

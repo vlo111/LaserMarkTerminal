@@ -26,6 +26,9 @@ namespace LaserMark
 
         private PictureEdit _currentEzd;
 
+        bool doWorkRun = false;
+        bool doWorkTest = false;
+
         public UpdateEzdDataFromApi(LMForm form)
         {
             try
@@ -121,53 +124,57 @@ namespace LaserMark
         {
             var btn = (SimpleButton)sender;
 
-            try
+            if (doWorkTest)
             {
-                if (testRedMarkBackgroundWorker.IsBusy)
-                {
-                    testRedMarkBackgroundWorker.CancelAsync();
-                }
+                doWorkTest = false;
+            }
 
-                if (testRedMarkContourBackgroundWorker.IsBusy)
+            if (btn.Text == "RUN")
+            {
+                if (XtraMessageBox.Show("Вы действительно хотите гравировать?", "Сообщения", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    testRedMarkContourBackgroundWorker.CancelAsync();
-                }
+                    doWorkRun = true;
 
-                if (btn.Name == "RUN")
-                {
-                    if (XtraMessageBox.Show("Вы действительно хотите гравировать?", "Сообщения", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    if (!runBackgroundWorker.IsBusy)
                     {
-                        if (!runBackgroundWorker.IsBusy)
-                        {
-                            runBackgroundWorker.RunWorkerAsync();
-                            btn.Name = "STOP";
-                            btn.BackColor = Color.FromArgb(192, 0, 0);
-                        }
-                        else
-                        {
-                            XtraMessageBox.Show("Гравировка уже идет", "Information", MessageBoxButtons.OK);
-                        }
+                        runBackgroundWorker.RunWorkerAsync();
+                        btn.Text = "STOP";
+                        btn.Appearance.BackColor = Color.FromArgb(192, 0, 0);
+
+                        this.testBtn.Enabled = false;
+                        this.testBtn.Cursor = Cursors.No;
+                    }
+                    else
+                    {
+                        XtraMessageBox.Show("Гравировка уже идет", "Information", MessageBoxButtons.OK);
                     }
                 }
-                else
-                {
-                    ReopositoryEzdFile.StopMark();
-                    btn.Name = "RUN";
-                    btn.BackColor = Color.FromArgb(0, 192, 192);
-                }
-
             }
-            catch (Exception ex)
+            else
             {
+                doWorkRun = false;
 
-                XtraMessageBox.Show(ex.Message, "Information", MessageBoxButtons.OK);
+                ReopositoryEzdFile.StopMark();
+                btn.Text = "RUN";
+                btn.Appearance.BackColor = Color.FromArgb(0, 192, 192);
+
+                this.testBtn.Enabled = true;
+                this.testBtn.Cursor = Cursors.No;
             }
-
         }
 
         private void RunBackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            ReopositoryEzdFile.Mark();
+            if (doWorkRun)
+            {
+                ReopositoryEzdFile.Mark();
+            }
+
+            if (!ReopositoryEzdFile.IsMarking())
+            {
+                this.runBtn.Text = "RUN";
+                this.runBtn.Appearance.BackColor = Color.FromArgb(0, 192, 192);
+            }
         }
 
         private void TestBtn_Click(object sender, EventArgs e)
@@ -175,11 +182,11 @@ namespace LaserMark
             var btn = (SimpleButton)sender;
             try
             {
-                if (JczLmc.IsMarking())
+                if (doWorkRun)
                 {
                     if (XtraMessageBox.Show("Вы действительно хотите простановить гравировку?", "Сообщения", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        int nErr = JczLmc.StopMark();
+                        doWorkRun = false;
                     }
                     else
                     {
@@ -189,6 +196,7 @@ namespace LaserMark
 
                 if (btn.Text == "TEST")
                 {
+                    doWorkTest = true;
                     if (btn.Tag.ToString() == "redMark")
                     {
                         if (!testRedMarkBackgroundWorker.IsBusy)
@@ -213,15 +221,16 @@ namespace LaserMark
                 }
                 else if (btn.Text == "STOP TEST")
                 {
+                    doWorkTest = false;
                     if (btn.Tag.ToString() == "redMark")
                     {
-                        testRedMarkBackgroundWorker.CancelAsync();
+                        testRedMarkBackgroundWorker.WorkerSupportsCancellation = true;
 
                         btn.Tag = "redMarkContour";
                     }
                     else if (btn.Tag.ToString() == "redMarkContour")
                     {
-                        testRedMarkContourBackgroundWorker.CancelAsync();
+                        testRedMarkContourBackgroundWorker.WorkerSupportsCancellation = true;
 
                         btn.Tag = "redMark";
                     }
@@ -237,18 +246,18 @@ namespace LaserMark
 
         private void TestRedMarkBackgroundWorkerr_DoWork(object sender, DoWorkEventArgs e)
         {
-            while (true)
+            while (doWorkTest)
             {
-                Thread.Sleep(400);
+                Thread.Sleep(100);
                 ReopositoryEzdFile.RedMark();
             }
         }
 
         private void TestRedMarkContourBackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            while (true)
+            while (doWorkTest)
             {
-                Thread.Sleep(400);
+                Thread.Sleep(100);
                 ReopositoryEzdFile.RedMarkContour();
             }
         }

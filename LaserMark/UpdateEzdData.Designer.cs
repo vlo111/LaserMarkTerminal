@@ -58,7 +58,7 @@
             this.obj8MinusBtn = new DevExpress.XtraEditors.SimpleButton();
             this.obj6MinusBtn = new DevExpress.XtraEditors.SimpleButton();
             this.obj2MinusBtn = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.testBtn = new DevExpress.XtraEditors.SimpleButton();
             this.runBtn = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -214,7 +214,7 @@
             this.layoutControl2.Controls.Add(this.obj8MinusBtn);
             this.layoutControl2.Controls.Add(this.obj6MinusBtn);
             this.layoutControl2.Controls.Add(this.obj2MinusBtn);
-            this.layoutControl2.Controls.Add(this.simpleButton1);
+            this.layoutControl2.Controls.Add(this.testBtn);
             this.layoutControl2.Controls.Add(this.runBtn);
             this.layoutControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl2.Location = new System.Drawing.Point(0, 0);
@@ -507,20 +507,21 @@
             this.obj2MinusBtn.TabIndex = 111;
             this.obj2MinusBtn.Click += new System.EventHandler(this.obj2MinusBtn_Click);
             // 
-            // simpleButton1
+            // testBtn
             // 
-            this.simpleButton1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.simpleButton1.Appearance.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.simpleButton1.Appearance.Options.UseBackColor = true;
-            this.simpleButton1.Appearance.Options.UseFont = true;
-            this.simpleButton1.Location = new System.Drawing.Point(22, 481);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(113, 66);
-            this.simpleButton1.StyleController = this.layoutControl2;
-            this.simpleButton1.TabIndex = 118;
-            this.simpleButton1.Tag = "redMark";
-            this.simpleButton1.Text = "TEST";
-            this.simpleButton1.Click += new System.EventHandler(this.TestBtn_Click);
+            this.testBtn.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.testBtn.Appearance.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.testBtn.Appearance.Options.UseBackColor = true;
+            this.testBtn.Appearance.Options.UseFont = true;
+            this.testBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.testBtn.Location = new System.Drawing.Point(22, 481);
+            this.testBtn.Name = "testBtn";
+            this.testBtn.Size = new System.Drawing.Size(113, 66);
+            this.testBtn.StyleController = this.layoutControl2;
+            this.testBtn.TabIndex = 118;
+            this.testBtn.Tag = "redMark";
+            this.testBtn.Text = "TEST";
+            this.testBtn.Click += new System.EventHandler(this.TestBtn_Click);
             // 
             // runBtn
             // 
@@ -528,6 +529,7 @@
             this.runBtn.Appearance.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.runBtn.Appearance.Options.UseBackColor = true;
             this.runBtn.Appearance.Options.UseFont = true;
+            this.runBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.runBtn.Location = new System.Drawing.Point(315, 481);
             this.runBtn.Name = "runBtn";
             this.runBtn.Size = new System.Drawing.Size(128, 66);
@@ -1036,7 +1038,7 @@
             // 
             // layoutControlItem3
             // 
-            this.layoutControlItem3.Control = this.simpleButton1;
+            this.layoutControlItem3.Control = this.testBtn;
             this.layoutControlItem3.Location = new System.Drawing.Point(0, 459);
             this.layoutControlItem3.MaxSize = new System.Drawing.Size(0, 70);
             this.layoutControlItem3.MinSize = new System.Drawing.Size(100, 70);
@@ -1208,7 +1210,7 @@
         private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItem2;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraLayout.EmptySpaceItem marginUpEmptySpace;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraEditors.SimpleButton testBtn;
         private DevExpress.XtraEditors.SimpleButton runBtn;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;

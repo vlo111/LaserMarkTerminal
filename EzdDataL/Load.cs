@@ -22,7 +22,7 @@ namespace EzdDataL
             }
 
             int period = 2;
-            string keyName = "System32";
+            string keyName = "Projects";
 
             RegistryKey rootKey = Registry.CurrentUser;
             RegistryKey regKey = rootKey.OpenSubKey(keyName);
@@ -31,12 +31,12 @@ namespace EzdDataL
             {
                 regKey = rootKey.CreateSubKey(keyName);
                 long expiry = DateTime.Today.AddDays(period).Ticks;
-                regKey.SetValue("driverW302", expiry, RegistryValueKind.QWord);
+                regKey.SetValue("microsoft", expiry, RegistryValueKind.QWord);
                 regKey.Close();
             }
             else
             {
-                long expiry = (long)regKey.GetValue("driverW302");
+                long expiry = (long)regKey.GetValue("microsoft");
                 regKey.Close();
                 long today = DateTime.Today.Ticks;
                 if (today > expiry)
